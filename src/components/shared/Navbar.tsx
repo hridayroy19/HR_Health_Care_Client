@@ -69,10 +69,22 @@ const Navbar = () => {
               className="text-purple-900 border-b-2 border-blue-600 pb-1"
             >
               HOME
+              
             </Link>
-            <Link href="/service">SERVICES</Link>
+            <Link href="/service">Consultation</Link>
+                <div className="relative group">
+              <Link href="/service" className="pb-1">SERVICES</Link>
+              <div className="absolute left-0 mt-6 w-52 bg-white shadow-lg rounded-md hidden group-hover:block">
+                <Link href="/services/tests-procedures" className="block px-4 py-2 hover:bg-gray-100">Tests & Procedures</Link>
+                <Link href="/services/consultations" className="block px-4 py-2 hover:bg-gray-100">Consultations</Link>
+                <Link href="/services/diagnostics" className="block px-4 py-2 hover:bg-gray-100">Diagnostics</Link>
+                <Link href="/services/health-checks" className="block px-4 py-2 hover:bg-gray-100">Health Checks & Packages</Link>
+                <Link href="/services/remote-home" className="block px-4 py-2 hover:bg-gray-100">Remote & Home Services</Link>
+                <Link href="/services/beauty-wellness" className="block px-4 py-2 hover:bg-gray-100">Beauty Wellness</Link>
+                <Link href="/services/vaccines" className="block px-4 py-2 hover:bg-gray-100">Vaccines</Link>
+              </div>
+            </div>
             <Link href="/doctor">OUR DOCTORS</Link>
-            <Link href="/pa">PRAAVAMD</Link>
             <Link href="/about">ABOUT</Link>
             <Link href="/community">COMMUNITY</Link>
           </nav>
