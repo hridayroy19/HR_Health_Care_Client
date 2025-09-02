@@ -12,7 +12,7 @@ const stats = [
 ];
 const Counter = () => {
   return (
-    <div className="bg-purple-100 lg:px-12 md:px-14 px-5 border">
+    <div className="bg-purple-50 lg:px-12 md:px-14 px-5 border">
       <StatsCount stats={stats} showDividers={true} className="" />
     </div>
   );
