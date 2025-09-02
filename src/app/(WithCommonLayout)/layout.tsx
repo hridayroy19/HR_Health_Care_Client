@@ -7,11 +7,6 @@ const CommonLayout = ({ children }: { children: React.ReactNode }) => {
       <Navbar />
       <main>{children}</main>
 
-      <footer className="bg-gray-100  text-center py-6 mt-10">
-        <p className="text-gray-600 text-sm">
-          © 2025 HR Health Care. All rights reserved.
-        </p>
-      </footer>
     </div>
   );
 };

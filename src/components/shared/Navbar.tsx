@@ -96,7 +96,7 @@ const Navbar = () => {
               <User size={24} />
             </button>
 
-            <Button className="bg-[#6d237ef8] hover:bg-[#601172f8] hidden lg:block">
+            <Button className="bg-purple-700 hover:bg-[#601172f8] hidden lg:block">
               Book Appointment →
             </Button>
 

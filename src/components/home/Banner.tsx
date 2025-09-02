@@ -4,13 +4,13 @@ import { InteractiveInput } from "../ui/interactive-input";
 const Banner = () => {
   return (
     <div className="xl:pt-7 lg:pt-20 md:pt-14 pt-10 bg-gray-100 ">
-      <section className=" lg:grid lg:h-screen lg:place-content-center">
+      <section className=" lg:grid lg:h-[95vh] lg:place-content-center">
         <div className="mx-auto w-screen max-w-screen-xl md:px-14 px-10 py-16 sm:px-6 sm:py-24 md:grid md:grid-cols-2 md:items-center md:gap-4 lg:px-14 lg:py-32">
           {/* Left Content */}
           <div className="max-w-prose text-left">
             <h1 className="xl:text-5xl font-bold text-gray-900 md:text-4xl text-3xl leading-snug">
               Consult with{" "}
-              <strong className="text-indigo-600">Expert Doctors</strong> <br />
+              <strong className="text-purple-700">Expert Doctors</strong> <br />
               Anytime, Anywhere
             </h1>
 
