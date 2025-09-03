@@ -5,7 +5,7 @@ const CommonLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <main>{children}</main>
+      <main className="w-full mx-auto justify-center overflow-hidden">{children}</main>
 
     </div>
   );

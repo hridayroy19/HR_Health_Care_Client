@@ -1,9 +1,9 @@
 import Banner from "@/components/home/Banner";
 import Counter from "@/components/home/Counter";
+import FQAs from "@/components/home/FQAs";
 import HealthCare from "@/components/home/HealthCare";
 import HealthCareWhy from "@/components/home/HealthCareWhy";
-import BorderGlideDemo from "@/components/home/Specialties";
-// import Specialties from "@/components/home/Specialties";
+import Specialties from "@/components/home/Specialties";
 
 const Home = () => {
   return (
@@ -12,8 +12,8 @@ const Home = () => {
       <Counter/>
       <HealthCare/>
       <HealthCareWhy/>
-      {/* <Specialties/> */}
-      <BorderGlideDemo/>
+      <Specialties/>
+      <FQAs/>
     </div>
   );
 };

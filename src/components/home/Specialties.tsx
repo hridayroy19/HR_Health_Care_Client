@@ -79,7 +79,7 @@ export default function Specialties() {
           {specialties.map((item) => (
             <BorderGlide
               key={item.id}
-              className="max-w-lg mx-auto w-full mx-auto h-[185px] "
+              className="max-w-lg mx-auto w-full  h-[185px] "
               autoPlayInterval={6000}
               borderDuration={5000}
               borderColor="radial-gradient(ellipse, #3b82f6, transparent)"
