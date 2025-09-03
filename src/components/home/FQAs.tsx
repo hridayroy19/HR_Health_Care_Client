@@ -9,7 +9,7 @@ const FQAs = () => {
           className="mb-10"
           highlightColor="#471074"
         >
-          <span>FAQs</span>
+          <span>Have Any Questions?</span>
         </TextHighlighter>
       </div>
       <div className="space-y-4">

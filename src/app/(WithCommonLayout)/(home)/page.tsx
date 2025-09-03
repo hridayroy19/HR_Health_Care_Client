@@ -1,4 +1,5 @@
 import Banner from "@/components/home/Banner";
+import Blogs from "@/components/home/Blogs";
 import Counter from "@/components/home/Counter";
 import FQAs from "@/components/home/FQAs";
 import HealthCare from "@/components/home/HealthCare";
@@ -13,6 +14,7 @@ const Home = () => {
       <HealthCare/>
       <HealthCareWhy/>
       <Specialties/>
+      <Blogs/>
       <FQAs/>
     </div>
   );
