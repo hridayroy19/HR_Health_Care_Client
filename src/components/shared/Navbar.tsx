@@ -49,12 +49,12 @@ const Navbar = () => {
           isScrolled ? "top-0" : "md:top-10"
         }`}
       >
-        <div className="max-w-7xl mx-auto md:px-6 px-2 flex justify-between items-center h-20 ">
+        <div className="max-w-7xl mx-auto md:px-4 px-2 flex justify-between items-center h-20 ">
           {/* Logo */}
           <div className=" font-bold text-lg flex items-center gap-2">
             <Image
               src={
-                "https://i.ibb.co.com/XrpSQmXM/Chat-GPT-Image-Sep-2-2025-11-21-57-AM.png"
+                "https://i.ibb.co.com/zVQhvw6M/6216da73-9cbb-4a6e-ba99-8bd85245629a-removebg-preview.png"
               }
               alt="image"
               height={130}
@@ -69,19 +69,55 @@ const Navbar = () => {
               className="text-purple-900 border-b-2 border-blue-600 pb-1"
             >
               HOME
-              
             </Link>
-            <Link href="/service">Consultation</Link>
-                <div className="relative group">
-              <Link href="/service" className="pb-1">SERVICES</Link>
+            <Link href="/service">CONSULTATIN</Link>
+            <div className="relative group">
+              <Link href="/service" className="pb-1">
+                SERVICES
+              </Link>
               <div className="absolute left-0 mt-6 w-52 bg-white shadow-lg rounded-md hidden group-hover:block">
-                <Link href="/services/tests-procedures" className="block px-4 py-2 hover:bg-gray-100">Tests & Procedures</Link>
-                <Link href="/services/consultations" className="block px-4 py-2 hover:bg-gray-100">Consultations</Link>
-                <Link href="/services/diagnostics" className="block px-4 py-2 hover:bg-gray-100">Diagnostics</Link>
-                <Link href="/services/health-checks" className="block px-4 py-2 hover:bg-gray-100">Health Checks & Packages</Link>
-                <Link href="/services/remote-home" className="block px-4 py-2 hover:bg-gray-100">Remote & Home Services</Link>
-                <Link href="/services/beauty-wellness" className="block px-4 py-2 hover:bg-gray-100">Beauty Wellness</Link>
-                <Link href="/services/vaccines" className="block px-4 py-2 hover:bg-gray-100">Vaccines</Link>
+                <Link
+                  href="/services/tests-procedures"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                >
+                  Tests & Procedures
+                </Link>
+                <Link
+                  href="/services/consultations"
+                  className="block uppercase px-4 py-2 hover:bg-gray-100"
+                >
+                  Consultations
+                </Link>
+                <Link
+                  href="/services/diagnostics"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                >
+                  Diagnostics
+                </Link>
+                <Link
+                  href="/services/health-checks"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                >
+                  Health Checks & Packages
+                </Link>
+                <Link
+                  href="/services/remote-home"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                >
+                  Remote & Home Services
+                </Link>
+                <Link
+                  href="/services/beauty-wellness"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                >
+                  Beauty Wellness
+                </Link>
+                <Link
+                  href="/services/vaccines"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                >
+                  Vaccines
+                </Link>
               </div>
             </div>
             <Link href="/doctor">OUR DOCTORS</Link>
