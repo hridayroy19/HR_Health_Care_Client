@@ -6,8 +6,7 @@ import HealthCare from "@/components/home/HealthCare";
 import HealthCareThree from "@/components/home/HealthCareThree";
 import HealthCareWhy from "@/components/home/HealthCareWhy";
 import Partners from "@/components/home/Partners";
-import GravityDemo from "@/components/home/Review";
-// import Review from "@/components/home/Review";
+import Review from "@/components/home/Review";
 import Specialties from "@/components/home/Specialties";
 
 const Home = () => {
@@ -21,7 +20,7 @@ const Home = () => {
       <Specialties/>
       <Blogs/>
       <Partners/>
-      <GravityDemo/>
+      <Review/>
       <FQAs/>
     </div>
   );
