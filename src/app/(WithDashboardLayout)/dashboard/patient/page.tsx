@@ -2,7 +2,7 @@
 const page = () => {
     return (
         <div>
-          Doctor page
+            patient page
         </div>
     );
 };
