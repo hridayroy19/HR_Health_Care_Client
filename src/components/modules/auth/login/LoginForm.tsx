@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,7 +21,6 @@ import { loginSchema } from "./LoginValidation";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { loginUser } from "@/services/AuthService";
-
 export function LoginForm() {
   const form = useForm({
     resolver: zodResolver(loginSchema),
@@ -34,7 +33,6 @@ export function LoginForm() {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await loginUser(data);
-      console.log(res)
       if (res?.success) {
         toast.success(res?.message);
         if (redirect) {
@@ -184,3 +182,4 @@ export function LoginForm() {
     </div>
   );
 }
+ 

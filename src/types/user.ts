@@ -1,11 +1,7 @@
 export interface IUser {
-    _id: string;
-    id: string;
-    name: string;
     email: string;
-    profile: string | "";
-    role: "STUDENT" | "ADMIN" | "TEACHER";
+    role: "DOCTOR" | "ADMIN" | "SUPER_ADMIN" | "PATIENT";
     iat?: number;
     exp?: number;
-    userStatus?:string
+
 }

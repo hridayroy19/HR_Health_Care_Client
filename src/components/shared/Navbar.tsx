@@ -1,12 +1,26 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { Menu, X, User, Search, Facebook, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { useUser } from "@/context/UserContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { logout } from "@/services/AuthService";
 
 const Navbar = () => {
+  const { user, setIsLoading } = useUser();
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -17,6 +31,11 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handelLogout = () => {
+    logout();
+    setIsLoading(true);
+  };
 
   return (
     <header className="fixed top-0 left-0 w-full z-50">
@@ -36,9 +55,44 @@ const Navbar = () => {
               <Facebook size={16} />
               <Instagram size={16} />
             </span>
-            <span className="flex items-center gap-1 cursor-pointer">
-              <User size={16} /> My Account
-            </span>
+            {user ? (
+              <>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Avatar>
+                      <AvatarImage
+                        src="https://github.com/Adityakishore0.png"
+                        alt="@Ahdeetai"
+                      />
+                      <AvatarFallback>User</AvatarFallback>
+                    </Avatar>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-56 mr-3" align="start">
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuGroup>
+                      <DropdownMenuItem>
+                        Profile
+                        <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        Settings
+                        <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+                      </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                    <DropdownMenuItem>Dashboard</DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={handelLogout}>
+                      Log out
+                      <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </>
+            ) : (
+              <span className="flex items-center gap-1 cursor-pointer">
+                <User size={16} /> <Link href={"/login"}> My Account</Link>
+              </span>
+            )}
           </div>
         </div>
       </div>

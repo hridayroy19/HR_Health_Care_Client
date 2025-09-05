@@ -8,11 +8,8 @@ import HealthCareWhy from "@/components/modules/home/HealthCareWhy";
 import Partners from "@/components/modules/home/Partners";
 import Review from "@/components/modules/home/Review";
 import Specialties from "@/components/modules/home/Specialties";
-import { getCurrentUser } from "@/services/AuthService";
 
 const Home = async () => {
-  const user = await getCurrentUser();
-  console.log(user);
   return (
     <div>
       <Banner />
