@@ -11,7 +11,7 @@ import {
   Activity,
   MoreHorizontal,
 } from "lucide-react";
-import { BorderGlide } from "../ui/border-glide";
+import { BorderGlide } from "../../ui/border-glide";
 
 const specialties = [
   {

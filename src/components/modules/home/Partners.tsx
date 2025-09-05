@@ -19,7 +19,7 @@ const Partners = () => {
     <div className=" bg-gradient-to-b from-purple-100 via-purple-50 to-purple-50 ">
       <div className="w-full mx-auto py-12 lg:px-28 px-16 ">
         <div className="text-start font-normal mb-10">
-          <h3 className="text-2xl md:text-3xl font-bold text-gray-800">
+          <h3 className="text-2xl md:text-3xl  text-gray-800">
             Our Hospital Partners
           </h3>
         </div>

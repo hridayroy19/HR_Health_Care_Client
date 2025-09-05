@@ -1,27 +1,30 @@
-import Banner from "@/components/home/Banner";
-import Blogs from "@/components/home/Blogs";
-import Counter from "@/components/home/Counter";
-import FQAs from "@/components/home/FQAs";
-import HealthCare from "@/components/home/HealthCare";
-import HealthCareThree from "@/components/home/HealthCareThree";
-import HealthCareWhy from "@/components/home/HealthCareWhy";
-import Partners from "@/components/home/Partners";
-import Review from "@/components/home/Review";
-import Specialties from "@/components/home/Specialties";
+import Banner from "@/components/modules/home/Banner";
+import Blogs from "@/components/modules/home/Blogs";
+import Counter from "@/components/modules/home/Counter";
+import FQAs from "@/components/modules/home/FQAs";
+import HealthCare from "@/components/modules/home/HealthCare";
+import HealthCareThree from "@/components/modules/home/HealthCareThree";
+import HealthCareWhy from "@/components/modules/home/HealthCareWhy";
+import Partners from "@/components/modules/home/Partners";
+import Review from "@/components/modules/home/Review";
+import Specialties from "@/components/modules/home/Specialties";
+import { getCurrentUser } from "@/services/AuthService";
 
-const Home = () => {
+const Home = async () => {
+  const user = await getCurrentUser();
+  console.log(user);
   return (
     <div>
       <Banner />
-      <Counter/>
-      <HealthCare/>
-      <HealthCareWhy/>
-      <HealthCareThree/>
-      <Specialties/>
-      <Blogs/>
-      <Partners/>
-      <Review/>
-      <FQAs/>
+      <Counter />
+      <HealthCare />
+      <HealthCareWhy />
+      <HealthCareThree />
+      <Specialties />
+      <Blogs />
+      <Partners />
+      <Review />
+      <FQAs />
     </div>
   );
 };
