@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "./services/AuthService";
+import { protectedRoutes } from "./contants";
 
 type Role = keyof typeof roleBasedPrivateRoutes;
 
@@ -42,13 +43,5 @@ export const middleware = async (request: NextRequest) => {
 };
 
 export const config = {
-    matcher: [
-        "/login",
-        "/dashboard/admin",
-        "/dashboard/admin/:page",
-        "/dashboard/patient",
-        "/dashboard/patient/:page",
-        "/dashboard/doctor",
-        "/dashboard/doctor/:page",
-    ],
+    matcher: protectedRoutes
 };
