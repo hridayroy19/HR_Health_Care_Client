@@ -86,7 +86,9 @@ const Navbar = () => {
                       </DropdownMenuItem>
                     </DropdownMenuGroup>
                     <DropdownMenuItem>
-                      <Link href={"/dashboard"}>Dashboard</Link>
+                      <Link href={`/dashboard/${user?.role.toLowerCase()}`}>
+                        Dashboard
+                      </Link>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem onClick={handelLogout}>
