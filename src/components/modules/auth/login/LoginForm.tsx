@@ -21,11 +21,13 @@ import { loginSchema } from "./LoginValidation";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { loginUser } from "@/services/AuthService";
+import { useUser } from "@/context/UserContext";
 export function LoginForm() {
   const form = useForm({
     resolver: zodResolver(loginSchema),
   });
 
+  const {setIsLoading} = useUser()
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirectPath");
   const router = useRouter();
@@ -33,6 +35,7 @@ export function LoginForm() {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await loginUser(data);
+      setIsLoading(true)
       if (res?.success) {
         toast.success(res?.message);
         if (redirect) {
