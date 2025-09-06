@@ -8,8 +8,11 @@ import HealthCareWhy from "@/components/modules/home/HealthCareWhy";
 import Partners from "@/components/modules/home/Partners";
 import Review from "@/components/modules/home/Review";
 import Specialties from "@/components/modules/home/Specialties";
+import { getAllSpecialties } from "@/services/Specitlies";
 
 const Home = async () => {
+  const specialties = await getAllSpecialties();
+  // console.log(specialties);
   return (
     <div>
       <Banner />
@@ -17,7 +20,7 @@ const Home = async () => {
       <HealthCare />
       <HealthCareWhy />
       <HealthCareThree />
-      <Specialties />
+      <Specialties specialties={specialties?.data} />
       <Blogs />
       <Partners />
       <Review />
