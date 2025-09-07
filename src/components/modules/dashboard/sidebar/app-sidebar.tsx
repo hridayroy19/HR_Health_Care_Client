@@ -51,8 +51,8 @@ const data = {
       icon: IconChartBar,
     },
     {
-      title: "Projects",
-      url: "#",
+      title: "Specialties",
+      url: "/dashboard/admin/Specialties",
       icon: IconFolder,
     },
     {

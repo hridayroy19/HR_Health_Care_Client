@@ -13,6 +13,8 @@ import DeleteConfirmationModal from "@/components/ui/core/HRMOdal/DeleteConfirma
 import { toast } from "sonner";
 import { useState } from "react";
 import { deleteDoctor } from "@/services/Doctor";
+import DoctorUpdateModel from "./DoctorUpdateModel";
+import { HRDataTable } from "@/components/ui/core/HRTable/HRDataTable";
 
 const DoctorDataTable = ({ doctors }: { doctors: IDoctor[] }) => {
   // delete modal state
@@ -21,8 +23,8 @@ const DoctorDataTable = ({ doctors }: { doctors: IDoctor[] }) => {
   const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);
 
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  console.log(selectedId, "id");
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  const [selectedDoctor, setSelectedDoctor] = useState<IDoctor | null>(null);
 
   const handleDelete = (data: IDoctor) => {
     setSelectedId(data?.id);
@@ -30,10 +32,10 @@ const DoctorDataTable = ({ doctors }: { doctors: IDoctor[] }) => {
     setDeleteModalOpen(true);
   };
 
-  // const handleUpdate = (data: IDoctor) => {
-  //   setSelectedId(data?.id);
-  //   setUpdateModalOpen(true);
-  // };
+  const handleUpdate = (data: IDoctor) => {
+    setSelectedDoctor(data);
+    setUpdateModalOpen(true);
+  };
 
   const handleDeleteConfirm = async () => {
     try {
@@ -87,7 +89,7 @@ const DoctorDataTable = ({ doctors }: { doctors: IDoctor[] }) => {
       header: () => <div>Action</div>,
       cell: ({ row }) => (
         <button
-          className="text-red-500"
+          className="text-red-500 mr-10"
           title="Delete"
           onClick={() => handleDelete(row.original)}
         >
@@ -95,35 +97,27 @@ const DoctorDataTable = ({ doctors }: { doctors: IDoctor[] }) => {
         </button>
       ),
     },
-    // {
-    //   accessorKey: "actions_2",
-    //   header: () => <div>Update</div>,
-    //   cell: ({ row }) => (
-    //     <button
-    //       className="text-blue-500"
-    //       title="Update"
-    //       onClick={() => handleUpdate(row.original)}
-    //     >
-    //       <Edit className="w-5 h-5" />
-    //     </button>
-    //   ),
-    // },
+    {
+      accessorKey: "actions_2",
+      header: () => <div>Update</div>,
+      cell: ({ row }) => (
+        <button
+          className="text-blue-500 mr-4"
+          title="Update"
+          onClick={() => handleUpdate(row.original)}
+        >
+          <Edit className="w-5 h-5" />
+        </button>
+      ),
+    },
   ];
 
   return (
     <div>
-      <DataTable
-        className="px-4"
-        columns={columns}
+      <HRDataTable
         data={doctors}
-        searchable
+        columns={columns}
         searchPlaceholder="Search doctors..."
-        globalSearch
-        pagination
-        pageSize={10}
-        columnVisibility
-        enableAnimations
-        staggerDelay={0.05}
         emptyMessage="No doctors found."
       />
       {/* Delete Modal */}
@@ -132,6 +126,11 @@ const DoctorDataTable = ({ doctors }: { doctors: IDoctor[] }) => {
         isOpen={isDeleteModalOpen}
         onOpenChange={setDeleteModalOpen}
         onConfirm={handleDeleteConfirm}
+      />
+      <DoctorUpdateModel
+        doctor={selectedDoctor}
+        isOpen={isUpdateModalOpen}
+        onOpenChange={setUpdateModalOpen}
       />
     </div>
   );

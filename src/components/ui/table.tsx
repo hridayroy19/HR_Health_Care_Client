@@ -17,7 +17,15 @@ import {
   Row,
 } from "@tanstack/react-table";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronUp, Search, Eye, Filter, ArrowLeft, ArrowRight } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronUp,
+  Search,
+  Eye,
+  Filter,
+  ArrowLeft,
+  ArrowRight,
+} from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -45,20 +53,21 @@ const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
 );
 Input.displayName = "Input";
 
-const Select = React.forwardRef<HTMLSelectElement, React.ComponentProps<"select">>(
-  ({ className, ...props }, ref) => {
-    return (
-      <select
-        className={cn(
-          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-          className
-        )}
-        ref={ref}
-        {...props}
-      />
-    );
-  }
-);
+const Select = React.forwardRef<
+  HTMLSelectElement,
+  React.ComponentProps<"select">
+>(({ className, ...props }, ref) => {
+  return (
+    <select
+      className={cn(
+        "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+        className
+      )}
+      ref={ref}
+      {...props}
+    />
+  );
+});
 Select.displayName = "Select";
 
 function Table({ className, ...props }: React.ComponentProps<"table">) {
@@ -102,7 +111,7 @@ function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
       data-slot="table-footer"
       className={cn(
         "bg-muted/50 border-t font-medium [&>tr]:last:border-b-0",
-        className,
+        className
       )}
       {...props}
     />
@@ -115,7 +124,7 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
       data-slot="table-row"
       className={cn(
         "hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors",
-        className,
+        className
       )}
       {...props}
     />
@@ -128,7 +137,7 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
       data-slot="table-head"
       className={cn(
         "text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
-        className,
+        className
       )}
       {...props}
     />
@@ -141,7 +150,7 @@ function TableCell({ className, ...props }: React.ComponentProps<"td">) {
       data-slot="table-cell"
       className={cn(
         "p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
-        className,
+        className
       )}
       {...props}
     />
@@ -230,10 +239,13 @@ function DataTable<TData, TValue>({
   showPageSizeSelector = true,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>(initialSorting);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(initialColumnFilters);
-  const [columnVisibilityState, setColumnVisibilityState] = React.useState<VisibilityState>(initialColumnVisibility);
+  const [columnFilters, setColumnFilters] =
+    React.useState<ColumnFiltersState>(initialColumnFilters);
+  const [columnVisibilityState, setColumnVisibilityState] =
+    React.useState<VisibilityState>(initialColumnVisibility);
   const [globalFilter, setGlobalFilter] = React.useState(initialGlobalFilter);
-  const [paginationState, setPaginationState] = React.useState<PaginationState>(initialPagination);
+  const [paginationState, setPaginationState] =
+    React.useState<PaginationState>(initialPagination);
   const [rowSelection, setRowSelection] = React.useState({});
   const [showFiltersPanel, setShowFiltersPanel] = React.useState(false);
 
@@ -243,12 +255,14 @@ function DataTable<TData, TValue>({
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: pagination && !enableScroll ? getPaginationRowModel() : undefined,
+    getPaginationRowModel:
+      pagination && !enableScroll ? getPaginationRowModel() : undefined,
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibilityState,
     onGlobalFilterChange: globalSearch ? setGlobalFilter : undefined,
-    onPaginationChange: pagination && !enableScroll ? setPaginationState : undefined,
+    onPaginationChange:
+      pagination && !enableScroll ? setPaginationState : undefined,
     onRowSelectionChange: setRowSelection,
     globalFilterFn: "includesString",
     state: {
@@ -266,7 +280,9 @@ function DataTable<TData, TValue>({
 
   React.useEffect(() => {
     if (onRowSelect) {
-      const selectedRows = table.getFilteredSelectedRowModel().rows.map(row => row.original);
+      const selectedRows = table
+        .getFilteredSelectedRowModel()
+        .rows.map((row) => row.original);
       onRowSelect(selectedRows);
     }
   }, [rowSelection, onRowSelect, table]);
@@ -278,46 +294,55 @@ function DataTable<TData, TValue>({
   const RowWrapper = enableAnimations ? motion.tr : "tr";
   const FilterPanelWrapper = enableAnimations ? motion.div : "div";
 
-  const animationProps = enableAnimations ? {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 }
-  } : {};
+  const animationProps = enableAnimations
+    ? {
+        initial: { opacity: 0, y: 20 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.5 },
+      }
+    : {};
 
-  const toolbarAnimationProps = enableAnimations ? {
-    initial: { opacity: 0, y: -10 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.4, delay: 0.1 }
-  } : {};
+  const toolbarAnimationProps = enableAnimations
+    ? {
+        initial: { opacity: 0, y: -10 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.4, delay: 0.1 },
+      }
+    : {};
 
-  const tableAnimationProps = enableAnimations ? {
-    initial: { opacity: 0, scale: 0.95 },
-    animate: { opacity: 1, scale: 1 },
-    transition: { duration: 0.4, delay: 0.2 }
-  } : {};
+  const tableAnimationProps = enableAnimations
+    ? {
+        initial: { opacity: 0, scale: 0.95 },
+        animate: { opacity: 1, scale: 1 },
+        transition: { duration: 0.4, delay: 0.2 },
+      }
+    : {};
 
-  const paginationAnimationProps = enableAnimations ? {
-    initial: { opacity: 0, y: 10 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.4, delay: 0.3 }
-  } : {};
+  const paginationAnimationProps = enableAnimations
+    ? {
+        initial: { opacity: 0, y: 10 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.4, delay: 0.3 },
+      }
+    : {};
 
-  const filterPanelAnimationProps = enableAnimations ? {
-    initial: { opacity: 0, height: 0 },
-    animate: { opacity: 1, height: "auto" },
-    exit: { opacity: 0, height: 0 },
-    transition: { duration: 0.3 }
-  } : {};
-
+  const filterPanelAnimationProps = enableAnimations
+    ? {
+        initial: { opacity: 0, height: 0 },
+        animate: { opacity: 1, height: "auto" },
+        exit: { opacity: 0, height: 0 },
+        transition: { duration: 0.3 },
+      }
+    : {};
 
   return (
-    <TableWrapper className={cn("w-full space-y-4", className)} {...animationProps}>
+    <TableWrapper
+      className={cn("w-full space-y-4", className)}
+      {...animationProps}
+    >
       {showToolbar && (
         <ToolbarWrapper
-          className={cn(
-            "flex flex-col gap-4",
-            toolbarClassName
-          )}
+          className={cn("flex flex-col gap-4", toolbarClassName)}
           {...toolbarAnimationProps}
         >
           {customToolbar ? (
@@ -332,7 +357,9 @@ function DataTable<TData, TValue>({
                       <Input
                         placeholder={searchPlaceholder}
                         value={globalFilter ?? ""}
-                        onChange={(event) => setGlobalFilter(event.target.value)}
+                        onChange={(event) =>
+                          setGlobalFilter(event.target.value)
+                        }
                         className="pl-10"
                       />
                     </div>
@@ -348,7 +375,12 @@ function DataTable<TData, TValue>({
                     >
                       <Filter className="h-4 w-4" />
                       Filters
-                      <ChevronDown className={cn("h-4 w-4 transition-transform", showFiltersPanel && "rotate-180")} />
+                      <ChevronDown
+                        className={cn(
+                          "h-4 w-4 transition-transform",
+                          showFiltersPanel && "rotate-180"
+                        )}
+                      />
                     </Button>
                   )}
 
@@ -371,7 +403,9 @@ function DataTable<TData, TValue>({
                                 key={column.id}
                                 className="capitalize"
                                 checked={column.getIsVisible()}
-                                onCheckedChange={(value: boolean) => column.toggleVisibility(!!value)}
+                                onCheckedChange={(value: boolean) =>
+                                  column.toggleVisibility(!!value)
+                                }
                               >
                                 {column.id}
                               </DropdownMenuCheckboxItem>
@@ -401,7 +435,9 @@ function DataTable<TData, TValue>({
                               </label>
                               <Input
                                 placeholder={`Filter ${column.id}...`}
-                                value={(column.getFilterValue() as string) ?? ""}
+                                value={
+                                  (column.getFilterValue() as string) ?? ""
+                                }
                                 onChange={(event) =>
                                   column.setFilterValue(event.target.value)
                                 }
@@ -455,11 +491,14 @@ function DataTable<TData, TValue>({
                     {headerGroup.headers.map((header) => (
                       <TableHead
                         key={header.id}
-                        className="sticky top-0 z-20 bg-card border-b shadow-sm whitespace-nowrap"
+                        className="sticky top-0 z-20 bg-card border-b shadow-sm px-5 whitespace-nowrap"
                       >
                         {header.isPlaceholder
                           ? null
-                          : flexRender(header.column.columnDef.header, header.getContext())}
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
                       </TableHead>
                     ))}
                   </TableRow>
@@ -484,7 +523,10 @@ function DataTable<TData, TValue>({
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 0.3, delay: index * staggerDelay }}
+                            transition={{
+                              duration: 0.3,
+                              delay: index * staggerDelay,
+                            }}
                             data-state={row.getIsSelected() && "selected"}
                             className={cn(
                               "border-b transition-colors hover:bg-muted/50 group cursor-pointer",
@@ -495,9 +537,15 @@ function DataTable<TData, TValue>({
                             {row.getVisibleCells().map((cell) => (
                               <TableCell
                                 key={cell.id}
-                                className={cn("group-hover:bg-transparent whitespace-nowrap", cellClassName)}
+                                className={cn(
+                                  "group-hover:bg-transparent whitespace-nowrap",
+                                  cellClassName
+                                )}
                               >
-                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                {flexRender(
+                                  cell.column.columnDef.cell,
+                                  cell.getContext()
+                                )}
                               </TableCell>
                             ))}
                           </RowWrapper>
@@ -508,7 +556,10 @@ function DataTable<TData, TValue>({
                           animate={{ opacity: 1 }}
                           transition={{ duration: 0.3 }}
                         >
-                          <TableCell colSpan={columns.length} className="h-24 text-center">
+                          <TableCell
+                            colSpan={columns.length}
+                            className="h-24 text-center"
+                          >
                             {emptyMessage}
                           </TableCell>
                         </motion.tr>
@@ -525,15 +576,24 @@ function DataTable<TData, TValue>({
                             onClick={() => onRowClick?.(row.original)}
                           >
                             {row.getVisibleCells().map((cell) => (
-                              <TableCell key={cell.id} className="whitespace-nowrap">
-                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                              <TableCell
+                                key={cell.id}
+                                className="whitespace-nowrap"
+                              >
+                                {flexRender(
+                                  cell.column.columnDef.cell,
+                                  cell.getContext()
+                                )}
                               </TableCell>
                             ))}
                           </TableRow>
                         ))
                       ) : (
                         <TableRow>
-                          <TableCell colSpan={columns.length} className="h-24 text-center">
+                          <TableCell
+                            colSpan={columns.length}
+                            className="h-24 text-center"
+                          >
                             {emptyMessage}
                           </TableCell>
                         </TableRow>
@@ -560,7 +620,9 @@ function DataTable<TData, TValue>({
 
             {showPageSizeSelector && (
               <div className="flex items-center gap-2">
-                <span className="text-sm text-muted-foreground">Rows per page:</span>
+                <span className="text-sm text-muted-foreground">
+                  Rows per page:
+                </span>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="outline" className="w-20 justify-between">
@@ -581,14 +643,14 @@ function DataTable<TData, TValue>({
                     ))}
                   </DropdownMenuContent>
                 </DropdownMenu>
-
               </div>
             )}
           </div>
 
           <div className="flex items-center space-x-2">
             <p className="text-sm text-muted-foreground">
-              Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+              Page {table.getState().pagination.pageIndex + 1} of{" "}
+              {table.getPageCount()}
             </p>
             <div className="flex items-center space-x-2">
               <Button
@@ -621,7 +683,9 @@ const createSortableHeader = <TData, TValue = unknown>(
   title: string,
   enableAnimations: boolean = true
 ) => {
-  const SortableHeader: React.FC<{ column: Column<TData, TValue> }> = ({ column }) => {
+  const SortableHeader: React.FC<{ column: Column<TData, TValue> }> = ({
+    column,
+  }) => {
     const SortButton = enableAnimations ? motion.div : "div";
 
     return (
@@ -636,11 +700,19 @@ const createSortableHeader = <TData, TValue = unknown>(
             animate={{ rotate: column.getIsSorted() === "desc" ? 180 : 0 }}
             transition={{ duration: 0.2 }}
           >
-            {column.getIsSorted() ? <ChevronUp className="ml-2 h-4 w-4" /> : <ChevronDown className="ml-2 h-4 w-4" />}
+            {column.getIsSorted() ? (
+              <ChevronUp className="ml-2 h-4 w-4" />
+            ) : (
+              <ChevronDown className="ml-2 h-4 w-4" />
+            )}
           </SortButton>
         ) : (
           <>
-            {column.getIsSorted() ? <ChevronUp className="ml-2 h-4 w-4" /> : <ChevronDown className="ml-2 h-4 w-4" />}
+            {column.getIsSorted() ? (
+              <ChevronUp className="ml-2 h-4 w-4" />
+            ) : (
+              <ChevronDown className="ml-2 h-4 w-4" />
+            )}
           </>
         )}
       </Button>
@@ -651,20 +723,25 @@ const createSortableHeader = <TData, TValue = unknown>(
   return SortableHeader;
 };
 
-
 interface AnimatedCellProps {
   row: Row<unknown>;
   getValue: () => unknown;
 }
 
-const createAnimatedCell = (enableAnimations: boolean = true, delay: number = 0, className?: string) => {
+const createAnimatedCell = (
+  enableAnimations: boolean = true,
+  delay: number = 0,
+  className?: string
+) => {
   const AnimatedCell: React.FC<AnimatedCellProps> = ({ row, getValue }) => {
     const CellWrapper = enableAnimations ? motion.div : "div";
-    const animationProps = enableAnimations ? {
-      initial: { opacity: 0, x: -20 },
-      animate: { opacity: 1, x: 0 },
-      transition: { duration: 0.3, delay: row.index * 0.05 + delay }
-    } : {};
+    const animationProps = enableAnimations
+      ? {
+          initial: { opacity: 0, x: -20 },
+          animate: { opacity: 1, x: 0 },
+          transition: { duration: 0.3, delay: row.index * 0.05 + delay },
+        }
+      : {};
 
     return (
       <CellWrapper className={className} {...animationProps}>
@@ -672,7 +749,7 @@ const createAnimatedCell = (enableAnimations: boolean = true, delay: number = 0,
       </CellWrapper>
     );
   };
-  
+
   AnimatedCell.displayName = "AnimatedCell";
   return AnimatedCell;
 };

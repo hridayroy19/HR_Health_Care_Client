@@ -9,7 +9,7 @@ export const getAllSpecialties = async () => {
                 tags: ["SPECILETES"],
             },
         });
-       console.log(res,"data")
+        console.log(res, "data")
         return res.json();
     } catch (error: any) {
         return Error(error);

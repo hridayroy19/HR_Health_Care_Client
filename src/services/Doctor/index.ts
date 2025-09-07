@@ -6,9 +6,8 @@ import { revalidateTag } from "next/cache";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 
-export const createDoctor = async (payload:any): Promise<any> => {
+export const createDoctor = async (payload: any): Promise<any> => {
     const token = await getValidToken();
-    console.log(token,"token")
 
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/user/create-doctor`, {
@@ -19,7 +18,7 @@ export const createDoctor = async (payload:any): Promise<any> => {
             },
         });
         console.log(res)
-        revalidateTag("Brands");
+        revalidateTag("DOCTOR");
 
         return res.json();
     } catch (error: any) {
@@ -48,6 +47,7 @@ export const getAllDoctors = async () => {
 
 export const deleteDoctor = async (selectedId: string): Promise<any> => {
     const token = await getValidToken();
+    console.log(token, "refresh token")
 
     try {
         const res = await fetch(

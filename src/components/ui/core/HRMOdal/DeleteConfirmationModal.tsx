@@ -39,7 +39,7 @@ const DeleteConfirmationModal: React.FC<DeleteModalProps> = ({
           <Button
             variant="outline"
             className="bg-white"
-            onClick={() => onOpenChange(false)}
+            onClick={() => onOpenChange(false)} 
           >
             Cancel
           </Button>
