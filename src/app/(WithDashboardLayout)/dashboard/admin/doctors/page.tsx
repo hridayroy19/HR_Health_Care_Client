@@ -1,10 +1,13 @@
+import DoctorManagement from "@/components/modules/dashboard/doctor";
+import { getAllDoctors } from "@/services/Doctor";
 
-const DoctorManagement = () => {
-    return (
-        <div>
-            doctor management
-        </div>
-    );
+const DoctorPage = async () => {
+  const doctor = await getAllDoctors();
+  return (
+    <div>
+      <DoctorManagement doctor={doctor} />
+    </div>
+  );
 };
 
-export default DoctorManagement;
+export default DoctorPage;

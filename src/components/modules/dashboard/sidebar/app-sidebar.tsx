@@ -56,8 +56,8 @@ const data = {
       icon: IconFolder,
     },
     {
-      title: "Team",
-      url: "/",
+      title: "Admin Management",
+      url: "/dashboard/admin/own",
       icon: IconUsers,
     },
   ],
@@ -83,7 +83,7 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="offcanvas" {...props}>
-      <SidebarHeader className="bg-purple-300">
+      <SidebarHeader className="bg-[#120b22] ">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
@@ -91,19 +91,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
               <a href="#">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">HR Helath Care</span>
+                <IconInnerShadowTop className="!size-5 text-white" />
+                <span className=" text-white hover:text-black font-semibold">
+                  HR Helath Care
+                </span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className="bg-purple-300">
+      <SidebarContent className="bg-[#120b22] text-white">
         <NavMain items={data.navMain} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
-      <SidebarFooter className="bg-purple-300">
-        <NavUser/>
+      <SidebarFooter className="bg-[#120b22] text-white  ">
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   );
