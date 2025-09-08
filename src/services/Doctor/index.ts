@@ -27,23 +27,24 @@ export const createDoctor = async (payload: any): Promise<any> => {
 };
 
 
+//get all categories
 export const getAllDoctors = async () => {
     try {
-        const res = await fetch(
-            `${process.env.NEXT_PUBLIC_BASE_API}/doctor`,
-            {
-                next: {
-                    tags: ["DOCTOR"],
-                },
-            }
-        );
-        const data = await res.json();
-        // console.log(data.data)
-        return data;
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/doctor`, {
+            next: {
+                tags: ["SPECILETES"],
+            },
+        });
+        console.log(res, "data")
+        return res.json();
     } catch (error: any) {
-        return Error(error.message);
+        return Error(error);
     }
 };
+
+
+
+
 
 export const deleteDoctor = async (selectedId: string): Promise<any> => {
     const token = await getValidToken();

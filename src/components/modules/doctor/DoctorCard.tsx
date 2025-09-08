@@ -1,123 +1,106 @@
 "use client";
-
+import { Calendar, StarIcon, VideoIcon } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
-import { Star, Video, Calendar } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { IDoctor } from "@/types";
 
-interface DoctorCardProps {
-  name: string;
-  image: string;
-  specialties: string[];
-  hospital: string;
-  experience: string;
-  rating: number;
-  reviews: number;
-  fee: number;
-  discountFee?: number;
-  availability?: "Online" | "Appointment" | null;
-}
+type DoctorCardProps = {
+  doctor: IDoctor;
+};
 
-export default function DoctorCard({
-  name,
-  image,
-  specialties,
-  hospital,
-  experience,
-  rating,
-  reviews,
-  fee,
-  discountFee,
-  availability,
-}: DoctorCardProps) {
+export default function DoctorCard({ doctor }: DoctorCardProps) {
+  console.log(doctor);
+
   return (
-    <div className="relative border rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition bg-gradient-to-br from-white to-gray-50">
-      {/* Top Availability Badge */}
-      {availability && (
-        <span
-          className={`absolute top-3 right-3 text-xs px-3 py-1 rounded-full font-medium ${
-            availability === "Online"
-              ? "bg-green-100 text-green-700"
-              : "bg-blue-100 text-blue-700"
-          }`}
-        >
-          {availability}
-        </span>
-      )}
+    <Card className="w-full rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+      <CardContent className="p-5 flex flex-row items-center md:items-start gap-6">
+        {/* Left: Avatar + Rating + Experience */}
+        <div className="flex flex-col items-center md:items-start gap-3 w-full md:w-1/5">
+          <div className="border w-[110px] border-purple-400">
+            <Image
+              src={doctor?.profilePhoto}
+              height={50}
+              width={100}
+              className="w-full bg-contain "
+              alt="Doctor"
+            />
+          </div>
 
-      <div className="flex gap-5 p-5">
-        {/* Left - Doctor Image */}
-        <div className="relative">
-          <Image
-            src={image}
-            alt={name}
-            width={100}
-            height={100}
-            className="rounded-xl border object-cover w-[100px] h-[100px]"
-          />
+          <div className="text-center md:text-left">
+            <p className="text-sm font-semibold text-gray-800">
+              {doctor.experience}+ Years
+            </p>
+            <p className="text-xs text-gray-500">Experience</p>
+          </div>
         </div>
 
-        {/* Middle - Info */}
-        <div className="flex-1">
-          <h3 className="text-lg font-semibold">{name}</h3>
+        {/* Middle: Details */}
+        <div className="flex-1 flex flex-col gap-2 text-center md:text-left">
+          <div className="flex justify-between items-center">
+            <h2 className="text-sm md:text-xl font-bold text-gray-900">
+              {doctor.name}
+            </h2>
+          </div>
+
+          <p className="text-sm text-gray-600">{doctor?.qualification}</p>
 
           {/* Specialties */}
           <div className="flex flex-wrap gap-2 mt-1">
-            {specialties.map((spec, i) => (
-              <Badge
-                key={i}
-                className={`rounded-md ${
-                  i === 0
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-100 text-gray-600"
-                }`}
+            {doctor?.doctorSpecialties?.map((ds) => (
+              <p
+                key={ds?.specialitie?.id}
+                className="bg-blue-600 text-white text-xs px-2 py-1 rounded-md"
               >
-                {spec}
-              </Badge>
+                {ds?.specialitie?.title}
+                hello
+              </p>
             ))}
           </div>
 
-          {/* Hospital */}
-          <p className="text-sm text-gray-500 mt-2">{hospital}</p>
-
-          {/* Experience + Rating */}
-          <div className="flex items-center gap-6 mt-3">
-            <span className="text-sm font-medium text-gray-700">
-              {experience} Years Exp.
-            </span>
-            <span className="flex items-center gap-1 text-yellow-500 text-sm">
-              <Star size={16} className="fill-yellow-400" /> {rating} ({reviews}
-              )
-            </span>
+          {/* Workplace */}
+          <div className="mt-2">
+            <p className="text-sm text-gray-500">Working in</p>
+            <p className="text-sm font-medium text-gray-800">
+              {doctor?.currentWorkingPlace}
+            </p>
           </div>
 
-          {/* Services */}
-          <div className="flex items-center gap-4 mt-3 text-sm">
-            <span className="flex items-center gap-1 text-green-600">
-              <Video size={16} /> Video Call
-            </span>
-            <span className="flex items-center gap-1 text-blue-600">
-              <Calendar size={16} /> Appointment
-            </span>
-          </div>
-        </div>
+          {/* Availability */}
+          <div>
+            <p className="text-sm font-normal text-gray-600"> Available for</p>
 
-        {/* Right - Fee + Button */}
-        <div className="flex flex-col items-end justify-between">
-          <div className="text-right">
-            {discountFee && (
-              <p className="line-through text-sm text-gray-400">
-                ৳{discountFee}
+            <div className="flex gap-3 items-center">
+              <p className="text-sm text-green-600 font-medium mt-1 flex items-center gap-1">
+                <VideoIcon className="w-4 h-4" /> Instant Video Call
               </p>
-            )}
-            <p className="text-lg font-bold text-blue-600">৳{fee}</p>
-            <p className="text-xs text-gray-500">(Inc. VAT)</p>
+              <p className="text-sm text-purple-600 font-medium mt-1 flex items-center gap-1">
+                <Calendar className="w-4 h-4" /> Online Apppintment
+              </p>
+            </div>
           </div>
-          <Button className="mt-3 bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-5 py-2 rounded-lg shadow hover:opacity-90">
-            Book Now
-          </Button>
+          <p className="text-gray-600"> Address : {doctor.address}</p>
         </div>
-      </div>
-    </div>
+
+        {/* Right: Fee */}
+        <div className="flex flex-col items-center md:items-end gap-1 w-full md:w-1/5">
+          <p className="text-white w-[100px] px-6 font-semibold bg-green-500 rounded-2xl">
+            {" "}
+            online
+          </p>
+          <div className="flex items-baseline gap-1">
+            <span className="md:text-2xl font-bold text-blue-600">
+              ৳{doctor?.appointmentFee}
+            </span>
+            <span className="text-xs text-gray-500">(Inc. VAT)</span>
+          </div>
+          <p className="text-xs text-gray-500">Per Consultation</p>
+          <div className="flex items-center text-yellow-500 mt-5 gap-1">
+            <StarIcon className="w-4 h-4 fill-current" />
+            <span className="font-bold">4.9</span>
+            <span className="text-gray-500 text-sm">(376)</span>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 }

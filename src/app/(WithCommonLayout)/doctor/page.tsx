@@ -2,13 +2,12 @@ import AllDoctors from "@/components/modules/doctor";
 import { getAllDoctors } from "@/services/Doctor";
 
 const DoctorPage = async () => {
-
-  const {doctor} = await getAllDoctors();
-  console.log(doctor?.data)
+  const doctor = await getAllDoctors();
+  // console.log(doctor);
 
   return (
     <div>
-      <AllDoctors />
+      <AllDoctors doctor={doctor.data?.data || []} />
     </div>
   );
 };

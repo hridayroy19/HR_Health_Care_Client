@@ -4,3 +4,9 @@ export interface ISpecialty {
     description: string;
     icon: string;
 };
+
+export interface IDoctorSpecialty {
+  doctorId: string;
+  specialitiesId: string;
+  specialitie: ISpecialty;
+}

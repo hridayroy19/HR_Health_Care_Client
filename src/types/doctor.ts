@@ -1,3 +1,5 @@
+import { IDoctorSpecialty } from "./speciality";
+
 export interface IDoctor {
     id: string;
     name: string;
@@ -8,6 +10,13 @@ export interface IDoctor {
     experience: string;
     address: string;
     contactNumber: string;
+    apointmentFee: number;
+    profilePhoto: string;
+    specialties: string
+    some: string
+    currentWorkingPlace: string
+    doctorSpecialties: IDoctorSpecialty[]
+    qualification: string
 };
 
 export interface IDoctorUpdate {
@@ -20,8 +29,9 @@ export interface IDoctorUpdate {
     experience: string;
     address: string;
     contactNumber: string;
-    registrationNumber:string
-    qualification:string
-    currentWorkingPlace:string
-    designaton:string
+    registrationNumber: string
+    qualification: string
+    currentWorkingPlace: string
+    designaton: string
 };
+
