@@ -17,6 +17,8 @@ export interface IDoctor {
     currentWorkingPlace: string
     doctorSpecialties: IDoctorSpecialty[]
     qualification: string
+    registrationNumber:string
+    designaton:string
 };
 
 export interface IDoctorUpdate {

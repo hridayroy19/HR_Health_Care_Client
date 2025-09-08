@@ -32,7 +32,21 @@ export const getAllDoctors = async () => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/doctor`, {
             next: {
-                tags: ["SPECILETES"],
+                tags: ["DOCTOR"],
+            },
+        });
+        console.log(res, "data")
+        return res.json();
+    } catch (error: any) {
+        return Error(error);
+    }
+};
+// get single Doctor
+export const getSingleDoctors = async (doctorId:string) => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/doctor/${doctorId}`, {
+            next: {
+                tags: ["DOCTOR"],
             },
         });
         console.log(res, "data")

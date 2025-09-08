@@ -3,6 +3,7 @@ import { Calendar, StarIcon, VideoIcon } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { IDoctor } from "@/types";
+import Link from "next/link";
 
 type DoctorCardProps = {
   doctor: IDoctor;
@@ -13,6 +14,7 @@ export default function DoctorCard({ doctor }: DoctorCardProps) {
 
   return (
     <Card className="w-full rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+      <Link href={`/doctor/${doctor?.id}`} passHref>
       <CardContent className="p-5 flex flex-row items-center md:items-start gap-6">
         {/* Left: Avatar + Rating + Experience */}
         <div className="flex flex-col items-center md:items-start gap-3 w-full md:w-1/5">
@@ -101,6 +103,7 @@ export default function DoctorCard({ doctor }: DoctorCardProps) {
           </div>
         </div>
       </CardContent>
+      </Link>
     </Card>
   );
 }
