@@ -3,7 +3,6 @@
 
 import type { ColumnDef } from "@/components/ui/table";
 import {
-  DataTable,
   createSortableHeader,
   createAnimatedCell,
 } from "@/components/ui/table";

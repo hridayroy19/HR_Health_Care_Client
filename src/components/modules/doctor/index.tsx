@@ -13,10 +13,18 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { IDoctor } from "@/types";
+import { IDoctor, IMeta } from "@/types";
 import DoctorCard from "./DoctorCard";
+import TablePagination from "@/components/ui/core/HRTable/TablePagination";
 
-const AllDoctorManagement = ({ doctor }: { doctor: IDoctor[] }) => {
+const AllDoctorManagement = ({
+  doctor,
+  meta,
+}: {
+  doctor: IDoctor[];
+  meta: IMeta;
+}) => {
+  console.log(meta, "doctor data ");
   const [searchQuery, setSearchQuery] = useState("");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
@@ -93,6 +101,9 @@ const AllDoctorManagement = ({ doctor }: { doctor: IDoctor[] }) => {
             )}
           </div>
         </div>
+      </div>
+      <div className=" border mt-5 mb-10 flex justify-center w-full mx-auto ">
+        <TablePagination totalPage={meta?.total} />
       </div>
     </div>
   );

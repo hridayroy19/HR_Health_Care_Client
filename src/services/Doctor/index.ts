@@ -28,9 +28,9 @@ export const createDoctor = async (payload: any): Promise<any> => {
 
 
 //get all categories
-export const getAllDoctors = async () => {
+export const getAllDoctors = async (page?: string) => {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/doctor`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/doctor?limit=3&page=${page}`, {
             next: {
                 tags: ["DOCTOR"],
             },
@@ -42,7 +42,7 @@ export const getAllDoctors = async () => {
     }
 };
 // get single Doctor
-export const getSingleDoctors = async (doctorId:string) => {
+export const getSingleDoctors = async (doctorId: string) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/doctor/${doctorId}`, {
             next: {
