@@ -186,7 +186,7 @@ const Navbar = () => {
             </div>
             <Link href="/doctor">OUR DOCTORS</Link>
             <Link href="/about">ABOUT</Link>
-            <Link href="/community">COMMUNITY</Link>
+            <Link href="/blog">BLOG</Link>
           </nav>
           <div className="flex px-4 items-center gap-2 md:gap-4">
             <button className="text-gray-600 lg:hidden">

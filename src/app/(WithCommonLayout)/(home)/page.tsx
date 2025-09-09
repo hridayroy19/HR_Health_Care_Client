@@ -1,5 +1,6 @@
 import Banner from "@/components/modules/home/Banner";
 import Blogs from "@/components/modules/home/Blogs";
+import ContactForm from "@/components/modules/home/ContactForm";
 import Counter from "@/components/modules/home/Counter";
 import FQAs from "@/components/modules/home/FQAs";
 import HealthCare from "@/components/modules/home/HealthCare";
@@ -25,6 +26,7 @@ const Home = async () => {
       <Partners />
       <Review />
       <FQAs />
+      <ContactForm/>
     </div>
   );
 };
