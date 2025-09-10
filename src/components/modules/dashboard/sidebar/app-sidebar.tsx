@@ -16,6 +16,7 @@ import {
   IconReport,
   IconSearch,
   IconSettings,
+  IconUser,
   IconUsers,
 } from "@tabler/icons-react";
 
@@ -62,6 +63,11 @@ const data = {
     },
   ],
   navSecondary: [
+    {
+      title: "Profile",
+      url: "/dashboard/admin/profile",
+      icon: IconUser,
+    },
     {
       title: "Settings",
       url: "#",
