@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import React from 'react';
+import Image from "next/image";
+import React from "react";
 
 // Main App component
 const BlogManagement = () => {
@@ -8,63 +8,74 @@ const BlogManagement = () => {
     {
       id: 1,
       title: "The Future of Healthcare: Online Consultations",
-      excerpt: "Online doctor consultations are revolutionizing healthcare delivery, offering convenience and accessibility like never before. Learn how this technology is changing the patient experience.",
-      image: "https://placehold.co/800x600/6B7280/FFFFFF?text=Article+1",
+      excerpt:
+        "Online doctor consultations are revolutionizing healthcare delivery, offering convenience and accessibility like never before. Learn how this technology is changing the patient experience.",
+      image: "https://i.ibb.co.com/gbhZnJhG/images-1.png",
       date: "October 26, 2023",
     },
     {
       id: 2,
       title: "5 Common Health Myths Debunked by Doctors",
-      excerpt: "Don't fall for misinformation. Our doctors are here to separate fact from fiction and help you make informed decisions about your health.",
-      image: "https://placehold.co/800x600/6B7280/FFFFFF?text=Article+2",
+      excerpt:
+        "Don't fall for misinformation. Our doctors are here to separate fact from fiction and help you make informed decisions about your health.",
+      image: "https://i.ibb.co.com/sdfk45z4/Untitled-design-21-scaled.png",
       date: "October 24, 2023",
     },
     {
       id: 3,
       title: "Mental Wellness: The Importance of a Digital Check-up",
-      excerpt: "Mental health is just as important as physical health. Discover how online consultations can provide a safe and confidential space for discussing mental wellness.",
-      image: "https://placehold.co/800x600/6B7280/FFFFFF?text=Article+3",
+      excerpt:
+        "Mental health is just as important as physical health. Discover how online consultations can provide a safe and confidential space for discussing mental wellness.",
+      image:
+        "https://i.ibb.co.com/spC5MDGX/mental-health-awareness-concept-educational-260nw-2467704533.webp",
       date: "October 22, 2023",
     },
     {
       id: 4,
       title: "How to Prepare for Your First Virtual Doctor Visit",
-      excerpt: "Your first online appointment can be a breeze with the right preparation. We've compiled a checklist to ensure you get the most out of your consultation.",
-      image: "https://placehold.co/800x600/6B7280/FFFFFF?text=Article+4",
+      excerpt:
+        "Your first online appointment can be a breeze with the right preparation. We've compiled a checklist to ensure you get the most out of your consultation.",
+      image: "https://i.ibb.co.com/C3hPvWDv/images-5.jpg",
       date: "October 20, 2023",
     },
     {
       id: 5,
       title: "Pediatric Care: A Parent's Guide to Online Doctor Visits",
-      excerpt: "Online consultations are a convenient way to manage your child's health. Learn about the benefits and best practices for virtual pediatric care.",
-      image: "https://placehold.co/800x600/6B7280/FFFFFF?text=Article+5",
+      excerpt:
+        "Online consultations are a convenient way to manage your child's health. Learn about the benefits and best practices for virtual pediatric care.",
+      image: "https://i.ibb.co.com/Kjnt3rQB/images-6.jpg",
       date: "October 18, 2023",
     },
     {
       id: 6,
       title: "Managing Chronic Conditions with Telemedicine",
-      excerpt: "Telemedicine is a powerful tool for individuals managing chronic conditions, offering ongoing support and monitoring from the comfort of home.",
-      image: "https://placehold.co/800x600/6B7280/FFFFFF?text=Article+6",
+      excerpt:
+        "Telemedicine is a powerful tool for individuals managing chronic conditions, offering ongoing support and monitoring from the comfort of home.",
+      image: "https://i.ibb.co.com/wNFmvG7K/images-7.jpg",
       date: "October 16, 2023",
     },
   ];
 
   return (
-    <div className="bg-gray-50 mt-24 px-24 dark:bg-gray-950 min-h-screen text-gray-900 dark:text-gray-50 font-sans">
+    <div className="bg-gray-50 mt-24 xl:px-24 lg:px-16 md:px-12 px-8 dark:bg-gray-950 min-h-screen text-gray-900 dark:text-gray-50 font-sans">
       <div className="container mx-auto px-4 py-8 md:py-16">
         <header className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-bold bg-clip-text bg-gradient-to-r text-purple-600 mb-2">
-            The Telehealth Blog
+            The HR Health Care Blog
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Your trusted source for insights and updates on online doctor consultations and modern healthcare.
+            Your trusted source for insights and updates on online doctor
+            consultations and modern healthcare.
           </p>
         </header>
 
         {/* Blog Post Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogPosts.map((post) => (
-            <div key={post.id} className="relative group bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
+            <div
+              key={post.id}
+              className="relative group bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
+            >
               <Image
                 height={100}
                 width={200}
@@ -114,7 +125,8 @@ const BlogManagement = () => {
             Ready to experience convenient healthcare?
           </h3>
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 max-w-xl mx-auto">
-            Book an appointment with a certified doctor from the comfort of your home.
+            Book an appointment with a certified doctor from the comfort of your
+            home.
           </p>
           <a
             href="#"
@@ -123,14 +135,22 @@ const BlogManagement = () => {
             Book Now
           </a>
         </div>
-        <div className='mt-16'>
-            <p className='text-purple-800 text-sm'>
-                Doctor On Demand by Included Health telehealth services provide online medical care for urgent care, mental health, and therapy.
-
-Over 100 million people have access to our online providers, therapists, and psychiatrists at a reduced cost through their employer or health plan. We’re available 24/7 to treat colds, the flu, UTIs, anxiety, depression, acne, and more.
-
-The telemedicine services made available through Doctor On Demand by Included Health are provided by licensed physicians practicing within a group of independently owned professional practices collectively known as “Doctor On Demand Professionals”. These professional practices provide services via the Doctor On Demand® telehealth platform. Included Health, Inc. does not itself provide any physician, mental health or other healthcare provider services.
-            </p>
+        <div className="mt-16">
+          <p className="text-purple-800 text-sm">
+            Doctor On Demand by Included Health telehealth services provide
+            online medical care for urgent care, mental health, and therapy.
+            Over 100 million people have access to our online providers,
+            therapists, and psychiatrists at a reduced cost through their
+            employer or health plan. We’re available 24/7 to treat colds, the
+            flu, UTIs, anxiety, depression, acne, and more. The telemedicine
+            services made available through Doctor On Demand by Included Health
+            are provided by licensed physicians practicing within a group of
+            independently owned professional practices collectively known as
+            “Doctor On Demand Professionals”. These professional practices
+            provide services via the Doctor On Demand® telehealth platform.
+            Included Health, Inc. does not itself provide any physician, mental
+            health or other healthcare provider services.
+          </p>
         </div>
       </div>
     </div>
