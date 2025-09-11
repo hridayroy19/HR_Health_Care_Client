@@ -65,7 +65,8 @@ export const getNewToken = async () => {
   }
 };
 
-export const forgetPassword = async () => {
+export const forgetPassword = async (payload: FieldValues) => {
+  console.log(payload, "data")
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_API}/auth/forgot-password`,
@@ -73,11 +74,30 @@ export const forgetPassword = async () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: (await cookies()).get("refreshToken")!.value,
         },
+        body: JSON.stringify(payload),
       }
     );
+    return res.json();
+  } catch (error: any) {
+    return Error(error);
+  }
+};
 
+export const resetPassword = async (payload: { id: string; password: string; token: string }) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_API}/auth/reset-password`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+           Authorization: payload.token,
+        },
+      body: JSON.stringify({ id: payload.id, password: payload.password }), 
+      }
+      
+    );
     return res.json();
   } catch (error: any) {
     return Error(error);

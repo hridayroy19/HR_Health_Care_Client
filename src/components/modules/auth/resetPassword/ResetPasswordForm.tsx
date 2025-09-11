@@ -1,3 +1,5 @@
+"use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,14 +15,29 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { restpasswordformSchema } from "./resetPasswordSchema";
+import { toast } from "sonner";
+import { forgetPassword } from "@/services/AuthService";
+import { useRouter } from "next/navigation";
 
 const ResetPasswordForm = () => {
+  const router = useRouter();
   const form = useForm({
     resolver: zodResolver(restpasswordformSchema),
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data, "data email");
+    console.log(data)
+    try {
+      const res = await forgetPassword(data);
+      if (res?.success) {
+        toast.success(res?.message);
+        router.push("/login")
+      } else {
+        toast.error(res?.message);
+      }
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
   return (
@@ -38,7 +55,7 @@ const ResetPasswordForm = () => {
               <FormItem>
                 <FormLabel>Email Address</FormLabel>
                 <FormControl>
-                  <Input placeholder="m@example.com" type="email" {...field} />
+                  <Input placeholder="Enter your Email !" type="email" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

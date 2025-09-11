@@ -22,6 +22,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { loginUser } from "@/services/AuthService";
 import { useUser } from "@/context/UserContext";
+import Link from "next/link";
 export function LoginForm() {
   const form = useForm({
     resolver: zodResolver(loginSchema),
@@ -144,9 +145,9 @@ export function LoginForm() {
                     </FormItem>
                   )}
                 />
-                <a href="#" className="text-blue-600 hover:underline">
-                  Need Help?
-                </a>
+                <Link href="/forget-password" className="text-blue-600 hover:underline">
+                  Forget Passowrd
+                </Link>
               </div>
 
               {/* Login Button */}
