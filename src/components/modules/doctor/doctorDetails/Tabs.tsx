@@ -62,9 +62,9 @@ function Label({
   );
 }
 
-export default function AnimatedTabsDemo() {
+export default function DoctorAditionInfo() {
   return (
-    <div className="flex px-4 w-full gap-6">
+    <div className="flex xl:px-40 lg:px-20 md:px-26 px-6 w-full gap-6">
       <Tabs defaultValue="profile">
         <TabsList>
           <TabsTrigger value="profile">Info</TabsTrigger>
