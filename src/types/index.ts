@@ -4,3 +4,4 @@ export * from "./speciality";
 export * from "./doctor";
 export * from "./patient";
 export * from "./meta";
+export * from "./sidebar";

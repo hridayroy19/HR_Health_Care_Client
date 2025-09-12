@@ -1,4 +1,4 @@
-import SpecialtiesManagement from "@/components/modules/dashboard/specialties";
+import SpecialtiesManagement from "@/components/modules/dashboard/admin/specialties";
 import { getAllSpecialties } from "@/services/Specitlies";
 
 const SpecialtiesPage = async () => {

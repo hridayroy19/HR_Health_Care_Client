@@ -33,60 +33,19 @@ import { NavMain } from "./nav-main";
 import { NavDocuments } from "./nav-ducoment";
 import { NavSecondary } from "./nav-secoundray";
 import { NavUser } from "./nav-user";
-
-const data = {
-  navMain: [
-    {
-      title: "Dashboard",
-      url: "/dashboard/admin",
-      icon: IconDashboard,
-    },
-    {
-      title: "Doctor",
-      url: "/dashboard/admin/doctors",
-      icon: IconListDetails,
-    },
-    {
-      title: "Patient",
-      url: "/dashboard/admin/patient",
-      icon: IconChartBar,
-    },
-    {
-      title: "Specialties",
-      url: "/dashboard/admin/Specialties",
-      icon: IconFolder,
-    },
-    {
-      title: "Admin Management",
-      url: "/dashboard/admin/own",
-      icon: IconUsers,
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Profile",
-      url: "/dashboard/admin/profile",
-      icon: IconUser,
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: IconSettings,
-    },
-    {
-      title: "Get Help",
-      url: "#",
-      icon: IconHelp,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: IconSearch,
-    },
-  ],
-};
+import { useUser } from "@/context/UserContext";
+import { getSidebarData } from "./sidebarConfig";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { user } = useUser();
+  const role = user?.role as "ADMIN" | "DOCTOR" | "PATIENT" | undefined;
+
+  if (!role) {
+    return null;
+  }
+
+  const { navMain, navSecondary } = getSidebarData(role);
+
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader className="bg-[#120b22] ">
@@ -107,8 +66,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent className="bg-[#120b22] text-white">
-        <NavMain items={data.navMain} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        <NavMain items={navMain} />
+        <NavSecondary items={navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter className="bg-[#120b22] text-white  ">
         <NavUser />

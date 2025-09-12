@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "The Future of Healthcare: Online Consultations",
+    "excerpt": "Online doctor consultations are revolutionizing healthcare delivery, offering convenience and accessibility like never before. Learn how this technology is changing the patient experience.",
+    "image": "https://i.ibb.co.com/gbhZnJhG/images-1.png",
+    "date": "October 26, 2023"
+  },
+  {
+    "id": 2,
+    "title": "5 Common Health Myths Debunked by Doctors",
+    "excerpt": "Don't fall for misinformation. Our doctors are here to separate fact from fiction and help you make informed decisions about your health.",
+    "image": "https://i.ibb.co.com/sdfk45z4/Untitled-design-21-scaled.png",
+    "date": "October 24, 2023"
+  },
+  {
+    "id": 3,
+    "title": "Mental Wellness: The Importance of a Digital Check-up",
+    "excerpt": "Mental health is just as important as physical health. Discover how online consultations can provide a safe and confidential space for discussing mental wellness.",
+    "image": "https://i.ibb.co.com/spC5MDGX/mental-health-awareness-concept-educational-260nw-2467704533.webp",
+    "date": "October 22, 2023"
+  },
+  {
+    "id": 4,
+    "title": "How to Prepare for Your First Virtual Doctor Visit",
+    "excerpt": "Your first online appointment can be a breeze with the right preparation. We've compiled a checklist to ensure you get the most out of your consultation.",
+    "image": "https://i.ibb.co.com/C3hPvWDv/images-5.jpg",
+    "date": "October 20, 2023"
+  },
+  {
+    "id": 5,
+    "title": "Pediatric Care: A Parent's Guide to Online Doctor Visits",
+    "excerpt": "Online consultations are a convenient way to manage your child's health. Learn about the benefits and best practices for virtual pediatric care.",
+    "image": "https://i.ibb.co.com/Kjnt3rQB/images-6.jpg",
+    "date": "October 18, 2023"
+  },
+  {
+    "id": 6,
+    "title": "Managing Chronic Conditions with Telemedicine",
+    "excerpt": "Telemedicine is a powerful tool for individuals managing chronic conditions, offering ongoing support and monitoring from the comfort of home.",
+    "image": "https://i.ibb.co.com/wNFmvG7K/images-7.jpg",
+    "date": "October 16, 2023"
+  }
+]

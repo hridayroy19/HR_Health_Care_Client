@@ -1,4 +1,4 @@
-import DoctorManagement from "@/components/modules/dashboard/doctor";
+import DoctorManagement from "@/components/modules/dashboard/admin/doctor";
 import { getAllDoctors } from "@/services/Doctor";
 
 const DoctorPage = async () => {
