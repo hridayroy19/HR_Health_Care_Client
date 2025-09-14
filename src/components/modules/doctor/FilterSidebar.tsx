@@ -40,19 +40,13 @@ const FilterSidebar = () => {
 
       {/* Availability */}
       <div className="mb-6">
-        <p className="font-medium mb-2">Availability</p>
+        <p className="font-medium mb-2">Gender</p>
         <div className="flex flex-col gap-2">
           <Label className="flex items-center gap-2">
-            <Checkbox id="online" /> Online Now
+            <Checkbox id="MALE" /> MALE
           </Label>
           <Label className="flex items-center gap-2">
-            <Checkbox id="twoHours" /> Available in next 2 hours
-          </Label>
-          <Label className="flex items-center gap-2">
-            <Checkbox id="today" /> Available today
-          </Label>
-          <Label className="flex items-center gap-2">
-            <Checkbox id="free" /> Free doctors only
+            <Checkbox id="FEMALE" /> FEMALE
           </Label>
         </div>
       </div>

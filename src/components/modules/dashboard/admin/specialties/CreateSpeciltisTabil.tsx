@@ -1,5 +1,7 @@
 const CreateSpeciltisTabil = () => {
-  return <div></div>;
+  return <div>
+    create
+  </div>;
 };
 
 export default CreateSpeciltisTabil;

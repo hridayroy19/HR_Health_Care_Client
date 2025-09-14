@@ -5,6 +5,7 @@ import { getNewToken } from "@/services/AuthService";
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 
+
 export const isTokenExpired = async (token: string): Promise<boolean> => {
   if (!token) return true;
 
@@ -14,7 +15,7 @@ export const isTokenExpired = async (token: string): Promise<boolean> => {
     return decoded.exp * 1000 < Date.now();
   } catch (err: any) {
     console.error(err);
-    return true;
+    return true; 
   }
 };
 
@@ -32,3 +33,5 @@ export const getValidToken = async (): Promise<string> => {
 
   return token;
 };
+
+

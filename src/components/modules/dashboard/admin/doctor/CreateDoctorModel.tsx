@@ -25,12 +25,16 @@ import { useState } from "react";
 
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { DoctorValidatinSchema } from "./DoctorValidationSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const CreateDoctorModel = () => {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   const [imagePreview, setImagePreview] = useState<string[] | []>([]);
 
-  const form = useForm();
+  const form = useForm({
+      resolver: zodResolver(DoctorValidatinSchema),
+    });
 
   const {
     formState: { isSubmitting },
@@ -38,7 +42,6 @@ const CreateDoctorModel = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
-      // final JSON payload
       const finalPayload = {
         password: data.password,
         doctor: {
@@ -47,9 +50,9 @@ const CreateDoctorModel = () => {
           contactNumber: data.contactNumber,
           address: data.address,
           registrationNumber: data.registrationNumber,
-          experience: Number(data.experience),
+          experience:data.experience,
           gender: data.gender,
-          appointmentFee: Number(data.appointmentFee),
+          appointmentFee:data.appointmentFee,
           qualification: data.qualification,
           currentWorkingPlace: data.currentWorkingPlace,
           designaton: data.designaton,
@@ -120,7 +123,7 @@ const CreateDoctorModel = () => {
               {/* Name */}
               <FormField
                 control={form.control}
-                name="name"
+                name="doctor.name"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Name</FormLabel>
@@ -135,7 +138,7 @@ const CreateDoctorModel = () => {
               {/* Email */}
               <FormField
                 control={form.control}
-                name="email"
+                name="doctor.email"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Email</FormLabel>
@@ -154,7 +157,7 @@ const CreateDoctorModel = () => {
               {/* Contact Number */}
               <FormField
                 control={form.control}
-                name="contactNumber"
+                name="doctor.contactNumber"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Contact Number</FormLabel>
@@ -169,7 +172,7 @@ const CreateDoctorModel = () => {
               {/* Address */}
               <FormField
                 control={form.control}
-                name="address"
+                name="doctor.address"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Address</FormLabel>
@@ -184,7 +187,7 @@ const CreateDoctorModel = () => {
               {/* Registration Number */}
               <FormField
                 control={form.control}
-                name="registrationNumber"
+                name="doctor.registrationNumber"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Registration Number</FormLabel>
@@ -199,7 +202,7 @@ const CreateDoctorModel = () => {
               {/* Experience */}
               <FormField
                 control={form.control}
-                name="experience"
+                name="doctor.experience"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Experience (Years)</FormLabel>
@@ -214,7 +217,7 @@ const CreateDoctorModel = () => {
               {/* Gender */}
               <FormField
                 control={form.control}
-                name="gender"
+                name="doctor.gender"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Gender</FormLabel>
@@ -229,7 +232,7 @@ const CreateDoctorModel = () => {
               {/* Appointment Fee */}
               <FormField
                 control={form.control}
-                name="appointmentFee"
+                name="doctor.appointmentFee"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Appointment Fee</FormLabel>
@@ -248,7 +251,7 @@ const CreateDoctorModel = () => {
               {/* Qualification */}
               <FormField
                 control={form.control}
-                name="qualification"
+                name="doctor.qualification"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Qualification</FormLabel>
@@ -263,7 +266,7 @@ const CreateDoctorModel = () => {
               {/* Current Working Place */}
               <FormField
                 control={form.control}
-                name="currentWorkingPlace"
+                name="doctor.currentWorkingPlace"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Current Working Place</FormLabel>
@@ -278,7 +281,7 @@ const CreateDoctorModel = () => {
               {/* Designation */}
               <FormField
                 control={form.control}
-                name="designaton"
+                name="doctor.designaton"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Designation</FormLabel>

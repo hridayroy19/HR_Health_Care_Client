@@ -1,9 +1,9 @@
 "use server";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { getValidToken } from "@/lib/verifyToken";
 import { revalidateTag } from "next/cache";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 
 export const createDoctor = async (payload: any): Promise<any> => {
@@ -30,7 +30,7 @@ export const createDoctor = async (payload: any): Promise<any> => {
 //get all categories
 export const getAllDoctors = async (page?: string) => {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/doctor?limit=3&page=${page}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/doctor?limit=&page=${page}`, {
             next: {
                 tags: ["DOCTOR"],
             },

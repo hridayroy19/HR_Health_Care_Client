@@ -1,8 +1,9 @@
 import DoctorDataTable from "./DoctorTabil";
 import CreateDoctorModel from "./CreateDoctorModel";
+import { IDoctor } from "@/types";
 
 
-const DoctorManagement = ({ doctor }: any) => {
+const DoctorManagement = ({ doctor }: {doctor:IDoctor}) => {
 
   return (
     <div>
@@ -11,7 +12,7 @@ const DoctorManagement = ({ doctor }: any) => {
          <CreateDoctorModel/>
       </div>
       {/* Pass doctors into the table */}
-      <DoctorDataTable doctors={doctor?.data.data || []} />
+      <DoctorDataTable doctors={doctor?.data?.data || []} />
     </div>
   );
 };

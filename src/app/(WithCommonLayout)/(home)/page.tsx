@@ -13,7 +13,6 @@ import { getAllSpecialties } from "@/services/Specitlies";
 
 const Home = async () => {
   const specialties = await getAllSpecialties();
-  // console.log(specialties);
   return (
     <div>
       <Banner />
