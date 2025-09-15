@@ -10,8 +10,6 @@ type DoctorCardProps = {
 };
 
 export default function DoctorCard({ doctor }: DoctorCardProps) {
-  console.log(doctor);
-
   return (
     <Card className="w-full rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
       <Link href={`/doctor/${doctor?.id}`} passHref>

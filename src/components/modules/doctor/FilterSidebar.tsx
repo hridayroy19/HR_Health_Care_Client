@@ -8,7 +8,15 @@ import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 
-const FilterSidebar = () => {
+interface FilterSidebarProps {
+  selectedGender: string | null;
+  setSelectedGender: (gender: string | null) => void;
+}
+
+const FilterSidebar = ({
+  selectedGender,
+  setSelectedGender,
+}: FilterSidebarProps) => {
   const [fee, setFee] = useState([8000]);
   const [rating, setRating] = useState(2);
 
@@ -38,15 +46,28 @@ const FilterSidebar = () => {
         </div>
       </div>
 
-      {/* Availability */}
       <div className="mb-6">
         <p className="font-medium mb-2">Gender</p>
         <div className="flex flex-col gap-2">
           <Label className="flex items-center gap-2">
-            <Checkbox id="MALE" /> MALE
+            <Checkbox
+              id="MALE"
+              checked={selectedGender === "MALE"}
+              onCheckedChange={(checked) =>
+                setSelectedGender(checked ? "MALE" : null)
+              }
+            />{" "}
+            MALE
           </Label>
           <Label className="flex items-center gap-2">
-            <Checkbox id="FEMALE" /> FEMALE
+            <Checkbox
+              id="FEMALE"
+              checked={selectedGender === "FEMALE"}
+              onCheckedChange={(checked) =>
+                setSelectedGender(checked ? "FEMALE" : null)
+              }
+            />{" "}
+            FEMALE
           </Label>
         </div>
       </div>

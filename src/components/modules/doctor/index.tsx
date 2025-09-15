@@ -23,11 +23,10 @@ const AllDoctorManagement = ({
   doctor: IDoctor[];
   meta: IMeta;
 }) => {
-  console.log({ meta }, "mataaadddddddd");
-
   const [searchQuery, setSearchQuery] = useState("");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [selectedGender, setSelectedGender] = useState<string | null>(null);
 
   useEffect(() => {
     if (doctor) {
@@ -35,14 +34,26 @@ const AllDoctorManagement = ({
     }
   }, [doctor]);
 
+  // Filters
   const filteredDoctors = useMemo(() => {
-    if (!searchQuery) return doctor;
-    return doctor.filter(
-      (d) =>
-        d.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        d.email.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  }, [doctor, searchQuery]);
+    let data = doctor;
+
+    // Search filter
+    if (searchQuery) {
+      data = data.filter(
+        (d) =>
+          d.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          d.email.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    // Gender filter
+    if (selectedGender) {
+      data = data.filter((d) => d.gender === selectedGender);
+    }
+
+    return data;
+  }, [doctor, searchQuery, selectedGender]);
 
   return (
     <div className="pt-36 px-4 md:px-12 lg:px-36 bg-purple-100 min-h-screen">
@@ -81,7 +92,10 @@ const AllDoctorManagement = ({
                   <DrawerTitle>Filters</DrawerTitle>
                 </DrawerHeader>
                 <div className="px-4 pb-4 overflow-y-auto">
-                  <FilterSidebar />
+                  <FilterSidebar
+                    selectedGender={selectedGender}
+                    setSelectedGender={setSelectedGender}
+                  />
                 </div>
               </DrawerContent>
             </Drawer>
@@ -92,7 +106,10 @@ const AllDoctorManagement = ({
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Sidebar on large screens */}
           <div className="hidden lg:block w-full max-w-xs">
-            <FilterSidebar />
+            <FilterSidebar
+              selectedGender={selectedGender}
+              setSelectedGender={setSelectedGender}
+            />
           </div>
 
           {/* Doctor Cards */}
@@ -116,7 +133,7 @@ const AllDoctorManagement = ({
         </div>
       </div>
       <div className="border mt-5 mb-10 flex justify-center w-full mx-auto">
-        <TablePagination totalPage={Math.ceil(meta.total / meta.limit)} />
+        <TablePagination totalPage={meta.totalPage} />
       </div>
     </div>
   );
