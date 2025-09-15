@@ -6,7 +6,7 @@ const DoctorPage = async ({searchParams}:{searchParams:Promise<{page: string}>})
   const {page }= await searchParams;
 
   const doctor = await getAllDoctors(page);
-  // console.log(doctor);
+  // console.log(doctor,"doctor");
 
   return (
     <div>

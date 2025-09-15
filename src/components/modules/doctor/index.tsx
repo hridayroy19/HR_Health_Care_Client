@@ -23,6 +23,8 @@ const AllDoctorManagement = ({
   doctor: IDoctor[];
   meta: IMeta;
 }) => {
+  console.log({ meta }, "mataaadddddddd");
+
   const [searchQuery, setSearchQuery] = useState("");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -114,7 +116,7 @@ const AllDoctorManagement = ({
         </div>
       </div>
       <div className="border mt-5 mb-10 flex justify-center w-full mx-auto">
-        <TablePagination totalPage={meta?.total} />
+        <TablePagination totalPage={Math.ceil(meta.total / meta.limit)} />
       </div>
     </div>
   );

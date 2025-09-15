@@ -19,6 +19,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { logout } from "@/services/AuthService";
 import { usePathname, useRouter } from "next/navigation";
 import { protectedRoutes } from "@/contants";
+import clsx from "clsx";
 
 const Navbar = () => {
   const { user, setIsLoading } = useUser();
@@ -42,6 +43,15 @@ const Navbar = () => {
       router.push("/");
     }
   };
+
+
+const navItems = [
+  { href: "/", label: "HOME" },
+  { href: "/doctor", label: "OUR DOCTORS" },
+  { href: "/records", label: "Health Records" },
+  { href: "/blog", label: "BLOG" },
+  { href: "/about", label: "ABOUT" },
+];
 
   return (
     <header className="fixed top-0 left-0 w-full z-50">
@@ -125,69 +135,104 @@ const Navbar = () => {
               width={200}
             />
           </div>
+<nav className="hidden lg:flex gap-6 text-sm font-medium">
+  {navItems.map(({ href, label }) => (
+    <Link
+      key={href}
+      href={href}
+      className={clsx(
+        "pb-1 transition-colors hover:text-purple-700",
+        pathname === href
+          ? "text-purple-900 border-b-2 border-blue-600"
+          : "text-gray-700"
+      )}
+    >
+      {label}
+    </Link>
+  ))}
 
-          {/* Desktop Menu */}
-          <nav className="hidden lg:flex gap-6 text-sm font-medium">
-            <Link
-              href="/"
-              className="text-purple-900 border-b-2 border-blue-600 pb-1"
-            >
-              HOME
-            </Link>
-            <Link href="/service">CONSULTATIN</Link>
-            <div className="relative group">
-              <Link href="/service" className="pb-1">
-                SERVICES
-              </Link>
-              <div className="absolute left-0 mt-6 w-52 bg-white shadow-lg rounded-md hidden group-hover:block">
-                <Link
-                  href="/services/tests-procedures"
-                  className="block px-4 py-2 hover:bg-gray-100"
-                >
-                  Tests & Procedures
-                </Link>
-                <Link
-                  href="/services/consultations"
-                  className="block uppercase px-4 py-2 hover:bg-gray-100"
-                >
-                  Consultations
-                </Link>
-                <Link
-                  href="/services/diagnostics"
-                  className="block px-4 py-2 hover:bg-gray-100"
-                >
-                  Diagnostics
-                </Link>
-                <Link
-                  href="/services/health-checks"
-                  className="block px-4 py-2 hover:bg-gray-100"
-                >
-                  Health Checks & Packages
-                </Link>
-                <Link
-                  href="/services/remote-home"
-                  className="block px-4 py-2 hover:bg-gray-100"
-                >
-                  Remote & Home Services
-                </Link>
-                <Link
-                  href="/services/beauty-wellness"
-                  className="block px-4 py-2 hover:bg-gray-100"
-                >
-                  Beauty Wellness
-                </Link>
-                <Link
-                  href="/services/vaccines"
-                  className="block px-4 py-2 hover:bg-gray-100"
-                >
-                  Vaccines
-                </Link>
-              </div>
-            </div>
-            <Link href="/doctor">OUR DOCTORS</Link>
-            <Link href="/about">ABOUT</Link>
-            <Link href="/blog">BLOG</Link>
-          </nav>
+  {/* Dropdown for services */}
+  <div className="relative group">
+    <Link
+      href="/service"
+      className={clsx(
+        "pb-1 transition-colors",
+        pathname.startsWith("/services")
+          ? "text-purple-900 border-b-2 border-blue-600"
+          : "text-gray-700"
+      )}
+    >
+      SERVICES
+    </Link>
+    <div className="absolute left-0 mt-6 w-52 bg-white shadow-lg rounded-md hidden group-hover:block">
+      <Link
+        href="/services/tests-procedures"
+        className={clsx(
+          "block px-4 py-2 hover:bg-gray-100",
+          pathname === "/services/tests-procedures" && "bg-gray-100 text-purple-900"
+        )}
+      >
+        Tests & Procedures
+      </Link>
+      <Link
+        href="/services/consultations"
+        className={clsx(
+          "block uppercase px-4 py-2 hover:bg-gray-100",
+          pathname === "/services/consultations" && "bg-gray-100 text-purple-900"
+        )}
+      >
+        Consultations
+      </Link>
+      <Link
+        href="/services/diagnostics"
+        className={clsx(
+          "block px-4 py-2 hover:bg-gray-100",
+          pathname === "/services/diagnostics" && "bg-gray-100 text-purple-900"
+        )}
+      >
+        Diagnostics
+      </Link>
+      <Link
+        href="/services/health-checks"
+        className={clsx(
+          "block px-4 py-2 hover:bg-gray-100",
+          pathname === "/services/health-checks" && "bg-gray-100 text-purple-900"
+        )}
+      >
+        Health Checks & Packages
+      </Link>
+      <Link
+        href="/services/remote-home"
+        className={clsx(
+          "block px-4 py-2 hover:bg-gray-100",
+          pathname === "/services/remote-home" && "bg-gray-100 text-purple-900"
+        )}
+      >
+        Remote & Home Services
+      </Link>
+      <Link
+        href="/services/beauty-wellness"
+        className={clsx(
+          "block px-4 py-2 hover:bg-gray-100",
+          pathname === "/services/beauty-wellness" && "bg-gray-100 text-purple-900"
+        )}
+      >
+        Beauty Wellness
+      </Link>
+      <Link
+        href="/services/vaccines"
+        className={clsx(
+          "block px-4 py-2 hover:bg-gray-100",
+          pathname === "/services/vaccines" && "bg-gray-100 text-purple-900"
+        )}
+      >
+        Vaccines
+      </Link>
+    </div>
+  </div>
+</nav>
+
+         
           <div className="flex px-4 items-center gap-2 md:gap-4">
             <button className="text-gray-600 lg:hidden">
               <Search size={24} />
