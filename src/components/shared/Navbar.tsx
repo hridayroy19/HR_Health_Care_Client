@@ -44,14 +44,13 @@ const Navbar = () => {
     }
   };
 
-
-const navItems = [
-  { href: "/", label: "HOME" },
-  { href: "/doctor", label: "OUR DOCTORS" },
-  { href: "/records", label: "Health Records" },
-  { href: "/blog", label: "BLOG" },
-  { href: "/about", label: "ABOUT" },
-];
+  const navItems = [
+    { href: "/", label: "HOME" },
+    { href: "/doctor", label: "OUR DOCTORS" },
+    { href: "/records", label: "Health Records" },
+    { href: "/blog", label: "BLOG" },
+    { href: "/about", label: "ABOUT" },
+  ];
 
   return (
     <header className="fixed top-0 left-0 w-full z-50">
@@ -127,112 +126,97 @@ const navItems = [
           {/* Logo */}
           <div className=" font-bold text-lg flex items-center gap-2">
             <Image
-              src={
-                "https://i.ibb.co.com/zVQhvw6M/6216da73-9cbb-4a6e-ba99-8bd85245629a-removebg-preview.png"
-              }
+              src="https://i.ibb.co/zVQhvw6M/6216da73-9cbb-4a6e-ba99-8bd85245629a-removebg-preview.png"
               alt="image"
-              height={130}
-              width={200}
+              width={150}
+              height={110}
+              style={{ width: "220px", height: "auto" }}
             />
           </div>
-<nav className="hidden lg:flex gap-6 text-sm font-medium">
-  {navItems.map(({ href, label }) => (
-    <Link
-      key={href}
-      href={href}
-      className={clsx(
-        "pb-1 transition-colors hover:text-purple-700",
-        pathname === href
-          ? "text-purple-900 border-b-2 border-blue-600"
-          : "text-gray-700"
-      )}
-    >
-      {label}
-    </Link>
-  ))}
+          <nav className="hidden lg:flex gap-6 text-sm font-medium">
+            {navItems.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className={clsx(
+                  "pb-1 transition-colors hover:text-purple-700",
+                  pathname === href
+                    ? "text-purple-900 border-b-2 border-blue-600"
+                    : "text-gray-700"
+                )}
+              >
+                {label}
+              </Link>
+            ))}
 
-  {/* Dropdown for services */}
-  <div className="relative group">
-    <Link
-      href="/service"
-      className={clsx(
-        "pb-1 transition-colors",
-        pathname.startsWith("/services")
-          ? "text-purple-900 border-b-2 border-blue-600"
-          : "text-gray-700"
-      )}
-    >
-      SERVICES
-    </Link>
-    <div className="absolute left-0 mt-6 w-52 bg-white shadow-lg rounded-md hidden group-hover:block">
-      <Link
-        href="/services/tests-procedures"
-        className={clsx(
-          "block px-4 py-2 hover:bg-gray-100",
-          pathname === "/services/tests-procedures" && "bg-gray-100 text-purple-900"
-        )}
-      >
-        Tests & Procedures
-      </Link>
-      <Link
-        href="/services/consultations"
-        className={clsx(
-          "block uppercase px-4 py-2 hover:bg-gray-100",
-          pathname === "/services/consultations" && "bg-gray-100 text-purple-900"
-        )}
-      >
-        Consultations
-      </Link>
-      <Link
-        href="/services/diagnostics"
-        className={clsx(
-          "block px-4 py-2 hover:bg-gray-100",
-          pathname === "/services/diagnostics" && "bg-gray-100 text-purple-900"
-        )}
-      >
-        Diagnostics
-      </Link>
-      <Link
-        href="/services/health-checks"
-        className={clsx(
-          "block px-4 py-2 hover:bg-gray-100",
-          pathname === "/services/health-checks" && "bg-gray-100 text-purple-900"
-        )}
-      >
-        Health Checks & Packages
-      </Link>
-      <Link
-        href="/services/remote-home"
-        className={clsx(
-          "block px-4 py-2 hover:bg-gray-100",
-          pathname === "/services/remote-home" && "bg-gray-100 text-purple-900"
-        )}
-      >
-        Remote & Home Services
-      </Link>
-      <Link
-        href="/services/beauty-wellness"
-        className={clsx(
-          "block px-4 py-2 hover:bg-gray-100",
-          pathname === "/services/beauty-wellness" && "bg-gray-100 text-purple-900"
-        )}
-      >
-        Beauty Wellness
-      </Link>
-      <Link
-        href="/services/vaccines"
-        className={clsx(
-          "block px-4 py-2 hover:bg-gray-100",
-          pathname === "/services/vaccines" && "bg-gray-100 text-purple-900"
-        )}
-      >
-        Vaccines
-      </Link>
-    </div>
-  </div>
-</nav>
+            {/* Dropdown for services */}
+            <div className="relative group">
+              <Link
+                href="/service"
+                className={clsx(
+                  "pb-1 transition-colors",
+                  pathname.startsWith("/services")
+                    ? "text-purple-900 border-b-2 border-blue-600"
+                    : "text-gray-700"
+                )}
+              >
+                SERVICES
+              </Link>
+              <div className="absolute left-0 mt-6 w-52 bg-white shadow-lg rounded-md hidden group-hover:block">
+                <Link
+                  href="/services/tests-procedures"
+                  className={clsx(
+                    "block px-4 py-2 hover:bg-gray-100",
+                    pathname === "/services/tests-procedures" &&
+                      "bg-gray-100 text-purple-900"
+                  )}
+                >
+                  Tests & Procedures
+                </Link>
+                <Link
+                  href="/services/consultations"
+                  className={clsx(
+                    "block uppercase px-4 py-2 hover:bg-gray-100",
+                    pathname === "/services/consultations" &&
+                      "bg-gray-100 text-purple-900"
+                  )}
+                >
+                  Consultations
+                </Link>
+                <Link
+                  href="/services/diagnostics"
+                  className={clsx(
+                    "block px-4 py-2 hover:bg-gray-100",
+                    pathname === "/services/diagnostics" &&
+                      "bg-gray-100 text-purple-900"
+                  )}
+                >
+                  Diagnostics
+                </Link>
+                <Link
+                  href="/services/beauty-wellness"
+                  className={clsx(
+                    "block px-4 py-2 hover:bg-gray-100",
+                    pathname === "/services/beauty-wellness" &&
+                      "bg-gray-100 text-purple-900"
+                  )}
+                >
+                  Beauty Wellness
+                </Link>
+                <Link
+                  href="/services/vaccines"
+                  className={clsx(
+                    "block px-4 py-2 hover:bg-gray-100",
+                    pathname === "/services/vaccines" &&
+                      "bg-gray-100 text-purple-900"
+                  )}
+                >
+                  Vaccines
+                </Link>
+              </div>
+            </div>
+          </nav>
 
-         
           <div className="flex px-4 items-center gap-2 md:gap-4">
             <button className="text-gray-600 lg:hidden">
               <Search size={24} />
@@ -257,27 +241,27 @@ const navItems = [
 
         {/* Mobile Dropdown */}
         {menuOpen && (
-          <div className="lg:hidden bg-white shadow-md px-4 py-3 space-y-2">
-            <a href="#" className="block">
-              HOME
-            </a>
-            <a href="#" className="block">
-              SERVICES
-            </a>
-            <a href="#" className="block">
-              OUR DOCTORS
-            </a>
-            <a href="#" className="block">
-              PRAAVAMD
-            </a>
-            <a href="#" className="block">
-              ABOUT
-            </a>
-            <a href="#" className="block">
-              COMMUNITY
-            </a>
+          <div className="lg:hidden bg-white shadow-md px-4 py-4 space-y-4 rounded-b-2xl">
+            <div className="flex flex-col space-y-1">
+              {navItems.map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className={clsx(
+                    "block px-2 py-2 rounded-lg font-medium transition-colors",
+                    pathname === href
+                      ? "text-purple-700 bg-purple-50 border-l-4 border-purple-600"
+                      : "text-gray-700 hover:text-purple-700 hover:bg-gray-50"
+                  )}
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+
+            {/* Call-to-action button */}
             <div className="pt-2">
-              <Button className="w-full bg-[#611074] ">
+              <Button className="w-full bg-purple-700 hover:bg-purple-800 rounded-xl font-semibold">
                 Book Appointment →
               </Button>
             </div>

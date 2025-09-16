@@ -56,7 +56,6 @@ export const getAllDoctors = async (
                 },
             }
         );
-        console.log(res, "reeeeeeee")
         return res.json();
     } catch (error: any) {
         return Error(error);

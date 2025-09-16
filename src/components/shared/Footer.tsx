@@ -10,7 +10,16 @@ const Footer = () => {
           {/* Top Section */}
           <div className="lg:flex lg:items-center lg:justify-between">
             <div className="flex justify-center sm:justify-start text-2xl font-bold">
-             <Image src={"https://i.ibb.co.com/zVQhvw6M/6216da73-9cbb-4a6e-ba99-8bd85245629a-removebg-preview.png"} alt="logo" width={100} height={100} className="bg-white"/>
+              <Image
+                src={
+                  "https://i.ibb.co.com/zVQhvw6M/6216da73-9cbb-4a6e-ba99-8bd85245629a-removebg-preview.png"
+                }
+                alt="logo"
+                width={200}
+                height={100}
+                style={{ width: "120px", height: "auto" }}
+                className="bg-white"
+              />
             </div>
 
             <p className="mt-4 max-w-md text-center leading-relaxed text-white sm:text-left lg:mt-0">
