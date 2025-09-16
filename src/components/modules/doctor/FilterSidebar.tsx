@@ -1,128 +1,177 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useState } from "react";
-import { Checkbox } from "@/components/ui/checkbox";
+import { useEffect, useState } from "react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Star } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { Slider } from "@/components/ui/slider";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { getAllSpecialties } from "@/services/Specitlies";
+import { ISpecialty } from "@/types";
+import { Checkbox } from "@/components/ui/checkbox";
 
-interface FilterSidebarProps {
-  selectedGender: string | null;
-  setSelectedGender: (gender: string | null) => void;
-}
+export default function FilterSidebar() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [specialties, setSpecialties] = useState<ISpecialty[]>([]);
+  const [selectedGender, setSelectedGender] = useState<string | null>(null);
 
-const FilterSidebar = ({
-  selectedGender,
-  setSelectedGender,
-}: FilterSidebarProps) => {
-  const [fee, setFee] = useState([8000]);
-  const [rating, setRating] = useState(2);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const fetchSpecialties = async () => {
+      setIsLoading(true);
+      try {
+        const res = await getAllSpecialties();
+        setSpecialties(res?.data || []);
+      } catch (error: any) {
+        console.error(error);
+        toast.error("Failed to fetch filters");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchSpecialties();
+  }, []);
+
+  const handleSearchQuery = (query: string, value: string | number | null) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (value === null || value === "") {
+      params.delete(query);
+    } else {
+      params.set(query, value.toString());
+    }
+    params.set("page", "1");
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+  };
 
   return (
-    <div className="w-72 p-4 border rounded-xl shadow-sm bg-white">
+    <div className="p-6 bg-white rounded-2xl shadow-lg border border-purple-100">
       {/* Header */}
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="font-semibold text-lg">Filter</h2>
-        <Button variant="link" className="text-red-500 p-0 h-auto">
-          Reset
-        </Button>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold text-purple-700">Filters</h2>
+        {searchParams.toString().length > 0 && (
+          <Button
+            onClick={() => router.push(`${pathname}`, { scroll: false })}
+            size="sm"
+            variant="outline"
+            className="rounded-full text-sm font-medium px-3 py-1 border-purple-300 text-purple-600 hover:bg-purple-50 hover:text-purple-800 transition"
+          >
+            Clear
+          </Button>
+        )}
       </div>
 
-      {/* Consultation Fee */}
-      <div className="mb-6">
-        <p className="font-medium mb-2">Consultation Fee</p>
-        <Slider
-          value={fee}
-          onValueChange={setFee}
-          max={8000}
-          step={100}
-          className="mb-2"
-        />
-        <div className="flex justify-between text-sm text-gray-600">
-          <span>Min: ৳0</span>
-          <span>Max: ৳{fee}</span>
-        </div>
+      {/* Price Sort */}
+      <div className="mb-8">
+        <p className="font-semibold mb-3 text-gray-700">Sort by Price</p>
+        <RadioGroup className="flex flex-col gap-3">
+          {[
+            { label: "Low to High", value: "Low" },
+            { label: "High to Low", value: "High" },
+          ].map((option) => (
+            <Label
+              key={option.value}
+              className="flex items-center gap-3 cursor-pointer rounded-lg border border-gray-200 p-3 hover:border-purple-400 hover:bg-purple-50 transition"
+            >
+              <RadioGroupItem
+                id={option.value}
+                value={option.value}
+                checked={searchParams.get("priceSort") === option.value}
+                onClick={() => handleSearchQuery("priceSort", option.value)}
+                className="text-purple-600 data-[state=checked]:bg-purple-600 data-[state=checked]:border-purple-600"
+              />
+              {option.label}
+            </Label>
+          ))}
+        </RadioGroup>
       </div>
 
-      <div className="mb-6">
-        <p className="font-medium mb-2">Gender</p>
-        <div className="flex flex-col gap-2">
-          <Label className="flex items-center gap-2">
-            <Checkbox
-              id="MALE"
-              checked={selectedGender === "MALE"}
-              onCheckedChange={(checked) =>
-                setSelectedGender(checked ? "MALE" : null)
-              }
-            />{" "}
-            MALE
-          </Label>
-          <Label className="flex items-center gap-2">
-            <Checkbox
-              id="FEMALE"
-              checked={selectedGender === "FEMALE"}
-              onCheckedChange={(checked) =>
-                setSelectedGender(checked ? "FEMALE" : null)
-              }
-            />{" "}
-            FEMALE
-          </Label>
-        </div>
+      {/* Specialty */}
+      <div className="mb-8">
+        <h2 className="text-lg font-semibold mb-3 text-gray-700">Specialty</h2>
+        {!isLoading && (
+          <RadioGroup className="space-y-2">
+            {specialties.map((item) => (
+              <Label
+                key={item.id}
+                htmlFor={item.title}
+                className="flex items-center gap-3 cursor-pointer rounded-lg border border-gray-200 p-3 hover:border-purple-400 hover:bg-purple-50 transition"
+              >
+                <RadioGroupItem
+                  onClick={() => handleSearchQuery("specialties", item.title)}
+                  value={item.title}
+                  id={item.title}
+                  className="text-purple-600 data-[state=checked]:bg-purple-600 data-[state=checked]:border-purple-600"
+                />
+                {item.title}
+              </Label>
+            ))}
+          </RadioGroup>
+        )}
       </div>
 
-      {/* Rating */}
-      <div className="mb-6">
-        <p className="font-medium mb-2">Rating</p>
-        <div className="flex gap-1">
-          {[1, 2, 3, 4, 5].map((star) => (
-            <Star
-              key={star}
-              size={22}
-              className={`cursor-pointer ${
-                star <= rating
-                  ? "fill-yellow-400 text-yellow-400"
-                  : "text-gray-300"
-              }`}
-              onClick={() => setRating(star)}
-            />
+      {/* Gender start */}
+      <div className="mb-8">
+        <p className="font-semibold mb-3 text-gray-700">Gender</p>
+        <div className="flex flex-col gap-3">
+          {["MALE", "FEMALE"].map((gender) => (
+            <Label
+              key={gender}
+              className="flex items-center gap-3 cursor-pointer rounded-lg border border-gray-200 p-3 hover:border-purple-400 hover:bg-purple-50 transition"
+            >
+              <Checkbox
+                checked={selectedGender === gender}
+                onCheckedChange={(checked) =>
+                  setSelectedGender(checked ? gender : null)
+                }
+                onClick={() =>
+                  handleSearchQuery(
+                    "gender",
+                    selectedGender === gender ? null : gender
+                  )
+                }
+                className="data-[state=checked]:bg-purple-600 data-[state=checked]:border-purple-600"
+              />
+              {gender}
+            </Label>
           ))}
         </div>
       </div>
 
-      {/* Sort By */}
-      <div className="mb-2">
-        <p className="font-medium mb-2">Sort by</p>
-        <RadioGroup defaultValue="relevance" className="flex flex-col gap-2">
-          <Label className="flex items-center gap-2">
-            <RadioGroupItem value="relevance" /> Relevance
-          </Label>
-          <Label className="flex items-center gap-2">
-            <RadioGroupItem value="popularity" /> Popularity
-          </Label>
-          <Label className="flex items-center gap-2">
-            <RadioGroupItem value="low" /> Fees: low to high
-          </Label>
-          <Label className="flex items-center gap-2">
-            <RadioGroupItem value="high" /> Fees: high to low
-          </Label>
-          <Label className="flex items-center gap-2">
-            <RadioGroupItem value="rating" /> Rating
-          </Label>
-          <Label className="flex items-center gap-2">
-            <RadioGroupItem value="experience" /> Experience
-          </Label>
-          <Label className="flex items-center gap-2">
-            <RadioGroupItem value="specialist" /> Specialist First
-          </Label>
-          <Label className="flex items-center gap-2">
-            <RadioGroupItem value="ranking" /> Ranking
-          </Label>
+      {/* Rating */}
+      <div>
+        <h2 className="text-lg font-semibold mb-3 text-gray-700">Rating</h2>
+        <RadioGroup className="space-y-3">
+          {[5, 4, 3, 2, 1].map((rating) => (
+            <Label
+              key={rating}
+              htmlFor={`rating-${rating}`}
+              className="flex items-center gap-3 cursor-pointer rounded-lg border border-gray-200 p-3 hover:border-purple-400 hover:bg-purple-50 transition"
+            >
+              <RadioGroupItem
+                onClick={() => handleSearchQuery("rating", rating)}
+                value={`${rating}`}
+                id={`rating-${rating}`}
+                className="text-purple-600 data-[state=checked]:bg-purple-600 data-[state=checked]:border-purple-600"
+              />
+              <div className="flex">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <Star
+                    key={i}
+                    size={18}
+                    fill={i < rating ? "#9333ea" : "#e5e7eb"} 
+                    stroke={i < rating ? "#9333ea" : "#e5e7eb"}
+                  />
+                ))}
+              </div>
+            </Label>
+          ))}
         </RadioGroup>
       </div>
     </div>
   );
-};
-
-export default FilterSidebar;
+}

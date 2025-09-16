@@ -1,20 +1,12 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import FilterSidebar from "./FilterSidebar";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Filter, Search } from "lucide-react";
-import {
-  Drawer,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
 import { IDoctor, IMeta } from "@/types";
 import DoctorCard from "./DoctorCard";
 import TablePagination from "@/components/ui/core/HRTable/TablePagination";
+import { Search } from "lucide-react";
 
 const AllDoctorManagement = ({
   doctor,
@@ -23,10 +15,9 @@ const AllDoctorManagement = ({
   doctor: IDoctor[];
   meta: IMeta;
 }) => {
+
   const [searchQuery, setSearchQuery] = useState("");
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [selectedGender, setSelectedGender] = useState<string | null>(null);
 
   useEffect(() => {
     if (doctor) {
@@ -34,26 +25,17 @@ const AllDoctorManagement = ({
     }
   }, [doctor]);
 
-  // Filters
-  const filteredDoctors = useMemo(() => {
-    let data = doctor;
+  const filteredDoctors = doctor.filter((d) => {
+    let match = true;
 
     // Search filter
     if (searchQuery) {
-      data = data.filter(
-        (d) =>
-          d.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          d.email.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+      match =
+        d.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        d.email.toLowerCase().includes(searchQuery.toLowerCase());
     }
-
-    // Gender filter
-    if (selectedGender) {
-      data = data.filter((d) => d.gender === selectedGender);
-    }
-
-    return data;
-  }, [doctor, searchQuery, selectedGender]);
+    return match;
+  });
 
   return (
     <div className="pt-36 px-4 md:px-12 lg:px-36 bg-purple-100 min-h-screen">
@@ -79,26 +61,6 @@ const AllDoctorManagement = ({
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
-
-            {/* Drawer for filters on mobile */}
-            <Drawer open={isFilterOpen} onOpenChange={setIsFilterOpen}>
-              <DrawerTrigger asChild>
-                <Button variant="outline" size="icon">
-                  <Filter className="h-4 w-4" />
-                </Button>
-              </DrawerTrigger>
-              <DrawerContent className="max-h-[80vh]">
-                <DrawerHeader>
-                  <DrawerTitle>Filters</DrawerTitle>
-                </DrawerHeader>
-                <div className="px-4 pb-4 overflow-y-auto">
-                  <FilterSidebar
-                    selectedGender={selectedGender}
-                    setSelectedGender={setSelectedGender}
-                  />
-                </div>
-              </DrawerContent>
-            </Drawer>
           </div>
         </div>
 
@@ -106,10 +68,7 @@ const AllDoctorManagement = ({
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Sidebar on large screens */}
           <div className="hidden lg:block w-full max-w-xs">
-            <FilterSidebar
-              selectedGender={selectedGender}
-              setSelectedGender={setSelectedGender}
-            />
+            <FilterSidebar />
           </div>
 
           {/* Doctor Cards */}
@@ -132,6 +91,8 @@ const AllDoctorManagement = ({
           </div>
         </div>
       </div>
+
+      {/* Pagination */}
       <div className="border mt-5 mb-10 flex justify-center w-full mx-auto">
         <TablePagination totalPage={meta.totalPage} />
       </div>

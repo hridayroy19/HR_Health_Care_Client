@@ -1,9 +1,7 @@
 "use server";
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { getValidToken } from "@/lib/verifyToken";
 import { revalidateTag } from "next/cache";
-
 
 
 export const createDoctor = async (payload: any): Promise<any> => {
@@ -26,21 +24,45 @@ export const createDoctor = async (payload: any): Promise<any> => {
     }
 };
 
+export const getAllDoctors = async (
+    page?: string,
+    limit?: string,
+    query?: { [key: string]: string | string[] | undefined }
+) => {
+    const params = new URLSearchParams();
 
-//get all categories
-export const getAllDoctors = async (page?: string,) => {
+    if (query?.gender) {
+        params.append("gender", query.gender.toString());
+    }
+
+    if (query?.specialties) {
+        params.append("specialties", query.specialties.toString());
+    }
+
+    if (query?.rating) {
+        params.append("ratings", query.rating.toString());
+    }
+
+    if (query?.priceSort) {
+        params.append("priceSort", query.priceSort.toString());
+    }
+
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/doctor?&page=${page}`, {
-            next: {
-                tags: ["DOCTOR"],
-            },
-        });
-        console.log(res, "data")
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_API}/doctor?limit=${limit}&page=${page}&${params}`,
+            {
+                next: {
+                    tags: ["DOCTOR"],
+                },
+            }
+        );
+        console.log(res, "reeeeeeee")
         return res.json();
     } catch (error: any) {
         return Error(error);
     }
 };
+
 // get single Doctor
 export const getSingleDoctors = async (doctorId: string) => {
     try {
@@ -55,10 +77,6 @@ export const getSingleDoctors = async (doctorId: string) => {
         return Error(error);
     }
 };
-
-
-
-
 
 export const deleteDoctor = async (selectedId: string): Promise<any> => {
     const token = await getValidToken();
