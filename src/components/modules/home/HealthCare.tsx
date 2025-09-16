@@ -12,6 +12,7 @@ const HealthCare = () => {
           width={500}
           height={200}
           className="lg:w-[650px] w-full flex justify-start"
+          style={{ width: "300", height: "auto" }}
         />
       </div>
       <div className="bg-purple-500 ">
