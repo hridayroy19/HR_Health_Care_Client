@@ -1,9 +1,12 @@
+"use client";
+
 import {
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
 } from "@/components/ui/animated-tabs";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -13,141 +16,126 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-function Button({
-  children,
-  ...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
-  return (
-    <button
-      {...props}
-      className={`bg-primary text-primary-foreground shadow hover:bg-primary/90
-         inline-flex items-center justify-center gap-2 whitespace-nowrap
-         rounded-md text-sm font-medium transition-colors
-         focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
-         disabled:pointer-events-none disabled:opacity-50
-         [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-9 px-4 py-2`}
-    >
-      {children}
-    </button>
-  );
-}
-
-function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
-  return (
-    <input
-      {...props}
-      className={`file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none
-         file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium
-         disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm
-         focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]
-         aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive`}
-    />
-  );
-}
-
-function Label({
-  children,
-  htmlFor,
-}: {
-  children: React.ReactNode;
-  htmlFor?: string;
-}) {
-  return (
-    <label
-      htmlFor={htmlFor}
-      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-    >
-      {children}
-    </label>
-  );
-}
-
 export default function DoctorAditionInfo() {
   return (
-    <div className="flex xl:px-40 lg:px-20 md:px-26 px-6 w-full gap-6">
+    <div className="flex w-full justify-center px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40 py-8">
       <Tabs defaultValue="profile">
+        {/* Tab Buttons */}
         <TabsList>
           <TabsTrigger value="profile">Info</TabsTrigger>
-          <TabsTrigger value="settings">Exprience</TabsTrigger>
-          <TabsTrigger value="review">Review</TabsTrigger>
+          <TabsTrigger value="experience">Experience</TabsTrigger>
+          <TabsTrigger value="review">Reviews</TabsTrigger>
         </TabsList>
 
+        {/* Profile / Info */}
         <TabsContent value="profile">
           <Card>
             <CardHeader>
-              <CardTitle>About Doctor</CardTitle>
-            </CardHeader>
-            <CardContent className="grid gap-6">
-             <div className="flex gap-6">
-                 <p className="w-full border flex-1">
-                About Doctor || মেডিসিন বিশেষজ্ঞ , ডায়াবেটোলজিস্ট ও নিউরো
-                মেডিসিন অভিজ্ঞ || হাসপাতালে ভর্তি রোগী/ মুমূর্ষু রোগী
-                টেলিমেডিসিন এর উপযোগী নয় DR. RAIHAN AHMAD MBBS, BCS(Health),
-                FCPS (MEDICINE), CCD (BIRDEM), MD NEUROLOGY (Course), National
-                Institute of Neurosciences and Hospital (NINS) --- ** কথা বলার
-                সময় শালীনতা বজায় রাখুন, প্রয়োজনে হেডফোন ব্যবহার করুন। আপনার
-                সমস্যা গুলো গুছিয়ে নিন; প্রয়োজনে তাপমাত্রা, প্রেসার, ব্লাড
-                সুগার মেপে নিন। পূর্বের ওষুধ, প্রেসক্রিপশন, রিপোর্ট সাথে রাখুন
-                অথবা আপলোড দিন । খিঁচুনি হলে ভিডিও করুন। ** --- অ্যাপোইন্টমেন্ট
-                নিতে সমস্যা হলে DocTime হেল্পলাইন 09612885599 এ ফোন করে নাম বা
-                DT9913 কোড বলুন।
-              </p>
-              <div className="w-1/3 ">
-                <h3>At a Glance</h3>
-                <p>
-                  Instant Consultation Time Sat - Fri (9 PM - 11.50 PM)
-                  Appointment Consultation Time Sat - Fri (3 PM - 11.50 PM)
-                </p>
-              </div>
-             </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="settings">
-          <Card>
-            <CardHeader>
-              <CardTitle>Settings</CardTitle>
+              <CardTitle>About the Doctor</CardTitle>
               <CardDescription>
-                Configure your preferences below.
+                Get to know your doctor and consultation details.
               </CardDescription>
             </CardHeader>
-            <CardContent className="grid gap-6">
-              <div className="grid gap-3">
-                <Label htmlFor="settings-language">Preferred Language</Label>
-                <Input id="settings-language" defaultValue="English" />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="settings-theme">Theme</Label>
-                <Input id="settings-theme" defaultValue="Light" />
+            <CardContent>
+              <div className="grid gap-6 md:grid-cols-3">
+                <div className="md:col-span-2 space-y-4">
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    ডাঃ রাইহান আহমাদ – মেডিসিন বিশেষজ্ঞ, ডায়াবেটোলজিস্ট ও নিউরো
+                    মেডিসিন অভিজ্ঞ।
+                    <br />
+                    <br />
+                    যোগ্যতা: MBBS, BCS(Health), FCPS (Medicine), CCD (BIRDEM),
+                    MD Neurology (Course) — National Institute of Neurosciences
+                    and Hospital (NINS).
+                  </p>
+                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                    <li>
+                      শালীনভাবে কথা বলুন এবং প্রয়োজনে হেডফোন ব্যবহার করুন।
+                    </li>
+                    <li>প্রয়োজনীয় রিপোর্ট, প্রেসক্রিপশন, ওষুধ সাথে রাখুন।</li>
+                    <li>খিঁচুনি হলে ভিডিও করুন।</li>
+                  </ul>
+                </div>
+                <div className="border rounded-md p-4 bg-muted/20">
+                  <h3 className="font-semibold mb-2">At a Glance</h3>
+                  <p className="text-sm text-muted-foreground">
+                    <strong>Instant Consultation:</strong> Sat - Fri (9 PM -
+                    11.50 PM)
+                    <br />
+                    <strong>Appointment:</strong> Sat - Fri (3 PM - 11.50 PM)
+                  </p>
+                </div>
               </div>
             </CardContent>
-            <CardFooter>
-              <Button>Save Settings</Button>
-            </CardFooter>
           </Card>
         </TabsContent>
 
+        {/* Experience */}
+        <TabsContent value="experience">
+          <Card>
+            <CardHeader>
+              <CardTitle>Doctor’s Experience</CardTitle>
+              <CardDescription>
+                Professional journey and areas of expertise.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-medium mb-2">Specializations</h4>
+                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                    <li>Medicine & Internal Diseases</li>
+                    <li>Neurology</li>
+                    <li>Diabetology</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">Workplaces</h4>
+                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                    <li>National Institute of Neurosciences</li>
+                    <li>BIRDEM Hospital</li>
+                    <li>Govt. Health Services</li>
+                  </ul>
+                </div>
+              </div>
+              <div>
+                <h4 className="font-medium mb-2">Years of Experience</h4>
+                <p className="text-sm text-muted-foreground">
+                  12+ years in patient care & consultation
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Reviews */}
         <TabsContent value="review">
           <Card>
             <CardHeader>
-              <CardTitle>Settings</CardTitle>
+              <CardTitle>Patient Reviews</CardTitle>
               <CardDescription>
-                Configure your preferences below.
+                What patients are saying about the doctor.
               </CardDescription>
             </CardHeader>
-            <CardContent className="grid gap-6">
-              <div className="grid gap-3">
-                <Label htmlFor="settings-language">Preferred Language</Label>
-                <Input id="settings-language" defaultValue="English" />
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <p className="text-sm font-medium">
+                  ⭐⭐⭐⭐⭐ Excellent Service
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Very professional and caring doctor. Helped me understand my
+                  condition clearly.
+                </p>
               </div>
-              <div className="grid gap-3">
-                <Label htmlFor="settings-theme">Theme</Label>
-                <Input id="settings-theme" defaultValue="Light" />
+              <div className="space-y-2">
+                <p className="text-sm font-medium">⭐⭐⭐⭐ Great Experience</p>
+                <p className="text-sm text-muted-foreground">
+                  Friendly and knowledgeable. Gave me the right treatment plan.
+                </p>
               </div>
             </CardContent>
             <CardFooter>
-              <Button>Save Settings</Button>
+              <Button>Write a Review</Button>
             </CardFooter>
           </Card>
         </TabsContent>

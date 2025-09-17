@@ -146,7 +146,7 @@ export default function FilterSidebar() {
       <div>
         <h2 className="text-lg font-semibold mb-3 text-gray-700">Rating</h2>
         <RadioGroup className="space-y-3">
-          {[5, 4, 3, 2, 1].map((rating) => (
+          {[5, 4, 3,].map((rating) => (
             <Label
               key={rating}
               htmlFor={`rating-${rating}`}
