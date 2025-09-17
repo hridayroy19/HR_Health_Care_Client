@@ -109,7 +109,22 @@ const Navbar = () => {
               </>
             ) : (
               <span className="flex items-center gap-1 cursor-pointer">
-                <User size={16} /> <Link href={"/login"}> My Account</Link>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button className="bg-purple-600 h-6 w-14 ">Login</Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-56" align="start">
+                    <DropdownMenuLabel>Account</DropdownMenuLabel>
+                    <DropdownMenuGroup>
+                      <DropdownMenuItem>
+                        <Link href={"/login"}>Login</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Link href={"/register"}> Patient Signup </Link>
+                      </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </span>
             )}
           </div>

@@ -9,7 +9,6 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { IconBackhoe } from "@tabler/icons-react";
 import ImagePreviewer from "@/components/ui/core/HRImageUploader/ImagePreviewer";
 import NMImageUploader from "@/components/ui/core/HRImageUploader";
 
@@ -85,7 +84,7 @@ export default function SignupPage() {
           </div>
 
           <h1 className="text-2xl md:text-3xl font-bold mb-1">
-            Create your free account
+            Create your free Patinet account
           </h1>
           <p className="text-gray-600 mb-4">
             100% free. No credit card needed.
