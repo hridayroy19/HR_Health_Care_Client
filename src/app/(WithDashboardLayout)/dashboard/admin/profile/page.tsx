@@ -1,9 +1,11 @@
 import AdminProfileManagement from "@/components/modules/dashboard/admin/profile";
+import { getMyProfile } from "@/services/AuthService";
 
-const Profilepage = () => {
+const Profilepage = async () => {
+  const myProfile = await getMyProfile();
   return (
     <div>
-      <AdminProfileManagement />
+      <AdminProfileManagement profile={myProfile} />
     </div>
   );
 };

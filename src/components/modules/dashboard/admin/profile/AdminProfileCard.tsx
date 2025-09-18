@@ -3,8 +3,18 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { UserProfile } from "@/types";
+import { useEffect } from "react";
+import Loading from "@/components/ui/core/Loader/Loader";
 
-const AdminProfileCard = () => {
+const AdminProfileCard = ({ profile }: { profile: UserProfile }) => {
+  useEffect(() => {
+    if (!profile) {
+    }
+  }, [profile]);
+
+  if (!profile) return <Loading/>;
+  
   return (
     <div>
       <p className="text-xl font-mono mb-5"> MY Profile </p>
@@ -15,15 +25,15 @@ const AdminProfileCard = () => {
             <CardContent className="flex items-center gap-4 p-6">
               <div className="relative h-20 w-20 rounded-full overflow-hidden border-2 border-purple-400 ">
                 <Image
-                  src="https://i.pravatar.cc/150?img=5"
+                  src={profile.profilePhoto}
                   alt="Profile"
                   fill
                   className="object-cover"
                 />
               </div>
               <div>
-                <h2 className="text-lg font-semibold">Natashia Khaleira</h2>
-                <p className="text-sm text-gray-600">Admin</p>
+                <h2 className="text-lg font-semibold"> {profile.name} </h2>
+                <p className="text-sm text-gray-600"> {profile.role} </p>
                 <p className="text-sm text-gray-600">Leeds, United Kingdom</p>
               </div>
             </CardContent>
@@ -40,7 +50,7 @@ const AdminProfileCard = () => {
             <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
               <div>
                 <p className="text-gray-500">First Name</p>
-                <p className="font-medium">Natashia</p>
+                <p className="font-medium"> {profile.name} </p>
               </div>
               <div>
                 <p className="text-gray-500">Last Name</p>
@@ -52,15 +62,15 @@ const AdminProfileCard = () => {
               </div>
               <div>
                 <p className="text-gray-500">Email Address</p>
-                <p className="font-medium">info@binary-fusion.com</p>
+                <p className="font-medium"> {profile.email} </p>
               </div>
               <div>
                 <p className="text-gray-500">Phone Number</p>
-                <p className="font-medium">(+62) 821 2554-5846</p>
+                <p className="font-medium">(+880) {profile.contactNumber} </p>
               </div>
               <div>
                 <p className="text-gray-500">User Role</p>
-                <p className="font-medium">Admin</p>
+                <p className="font-medium"> {profile.role} </p>
               </div>
             </CardContent>
           </Card>
@@ -89,7 +99,7 @@ const AdminProfileCard = () => {
             </CardContent>
           </Card>
         </div>
-      </div>{" "}
+      </div>
     </div>
   );
 };

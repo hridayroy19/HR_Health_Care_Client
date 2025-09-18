@@ -99,7 +99,7 @@ export const getNewToken = async () => {
 
     const cookieStore = await cookies();
     const token = cookieStore.get("refreshToken")!.value;
-    console.log(token,"কুকি পাঠানোর জন্য দরকার")
+    console.log(token, "কুকি পাঠানোর জন্য দরকার")
 
     if (!token) {
       throw new Error("No refresh token found in cookies");
@@ -110,7 +110,7 @@ export const getNewToken = async () => {
       credentials: "include", // কুকি পাঠানোর জন্য দরকার
       headers: {
         "Content-Type": "application/json",
-        Authorization:`${token}`,
+        Authorization: `${token}`,
       },
     });
 
@@ -164,28 +164,27 @@ export const resetPassword = async (payload: { id: string; password: string; tok
   }
 };
 
-// export const getMyProfile = async () => {
-//   const token = await getValidToken()
-//   console.log(token,"ddddddddd")
-//   try {
-//     // const cookieStore = await cookies(); // ✅ সিঙ্ক্রোনাস
-//     // const token = cookieStore.get("refreshToken")?.value; // accessToken নেওয়া হচ্ছে
+export const getMyProfile = async () => {
 
-//     if (!token) {
-//       throw new Error("No access token found");
-//     }
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("accessToken")?.value;
 
-//     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/user/me`, {
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: token, // ✅ সঠিক header
-//       },
-//       cache: "no-store",
-//     });
+    if (!token) {
+      throw new Error("No access token found");
+    }
 
-//     return await res.json();
-//   } catch (error) {
-//     console.error("Error fetching profile:", error);
-//     throw error;
-//   }
-// };
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/user/me`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      cache: "no-store",
+    });
+
+    return await res.json();
+  } catch (error) {
+    console.error("Error fetching profile:", error);
+    throw error;
+  }
+};

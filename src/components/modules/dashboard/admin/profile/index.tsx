@@ -1,9 +1,11 @@
+import { UserProfile } from "@/types";
 import AdminProfileCard from "./AdminProfileCard";
 
-const AdminProfileManagement = () => {
+const AdminProfileManagement = ({ profile }: {profile:UserProfile}) => {
+
   return (
     <div>
-      <AdminProfileCard />
+      <AdminProfileCard profile={profile?.data} />
     </div>
   );
 };

@@ -1,30 +1,16 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Menu, X, User, Search, Facebook, Instagram } from "lucide-react";
+import { Menu, X, User, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import { useUser } from "@/context/UserContext";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { logout } from "@/services/AuthService";
-import { usePathname, useRouter } from "next/navigation";
-import { protectedRoutes } from "@/contants";
+
+import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import SubNavbar from "./SubNavbar";
 
 const Navbar = () => {
-  const { user, setIsLoading } = useUser();
   const pathname = usePathname();
-  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -36,14 +22,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handelLogout = () => {
-    logout();
-    setIsLoading(true);
-    if (protectedRoutes.some((route) => pathname.match(route))) {
-      router.push("/");
-    }
-  };
-
   const navItems = [
     { href: "/", label: "HOME" },
     { href: "/doctor", label: "OUR DOCTORS" },
@@ -54,84 +32,14 @@ const Navbar = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50">
-      {/* Sub Navbar */}
+      {/* Main Navbar */}
       <div
         className={`bg-white transition-transform duration-500 ease-in-out hidden md:block ${
           isScrolled ? "-translate-y-full" : "translate-y-0"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-14 flex justify-between items-center h-10 text-sm">
-          <div className="flex gap-4">
-            <span className=" text-purple-950">📞 10648</span>
-            <span>✉️ hrhealthcare@hridoy.com</span>
-          </div>
-          <div className="flex gap-4 text-gray-600">
-            <span className="flex items-center gap-2 cursor-pointer">
-              <Facebook size={16} />
-              <Instagram size={16} />
-            </span>
-            {user ? (
-              <>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Avatar>
-                      <AvatarImage
-                        src="https://github.com/Adityakishore0.png"
-                        alt="@Ahdeetai"
-                      />
-                      <AvatarFallback>User</AvatarFallback>
-                    </Avatar>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-56 mr-3" align="start">
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    <DropdownMenuGroup>
-                      <DropdownMenuItem>
-                        Profile
-                        <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        Settings
-                        <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                      </DropdownMenuItem>
-                    </DropdownMenuGroup>
-                    <DropdownMenuItem>
-                      <Link href={`/dashboard/${user?.role.toLowerCase()}`}>
-                        Dashboard
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={handelLogout}>
-                      Log out
-                      <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </>
-            ) : (
-              <span className="flex items-center gap-1 cursor-pointer">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button className="bg-purple-600 h-6 w-14 ">Login</Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-56" align="start">
-                    <DropdownMenuLabel>Account</DropdownMenuLabel>
-                    <DropdownMenuGroup>
-                      <DropdownMenuItem>
-                        <Link href={"/login"}>Login</Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <Link href={"/register"}> Patient Signup </Link>
-                      </DropdownMenuItem>
-                    </DropdownMenuGroup>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </span>
-            )}
-          </div>
-        </div>
+        <SubNavbar />
       </div>
-
-      {/* Main Navbar */}
       <div
         className={`bg-white shadow-md fixed w-full transition-all duration-500 ease-in-out ${
           isScrolled ? "top-0" : "md:top-10"
