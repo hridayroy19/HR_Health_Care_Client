@@ -1,7 +1,6 @@
-"use client"
+"use client";
 
-import { SidebarIcon } from "lucide-react"
-
+import { SidebarIcon } from "lucide-react";
 
 import {
   Breadcrumb,
@@ -10,14 +9,14 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
-import { useSidebar } from "@/components/ui/sidebar"
-import MainHeader from "./main-header"
+} from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { useSidebar } from "@/components/ui/sidebar";
+import MainHeader from "./main-header";
 
 export function SiteHeader() {
-  const { toggleSidebar } = useSidebar()
+  const { toggleSidebar } = useSidebar();
 
   return (
     <header className="bg-purple-100 sticky top-0 z-50 flex w-full items-center border-b">
@@ -40,12 +39,15 @@ export function SiteHeader() {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage> <h1 className="text-2xl font-semibold">Dashboard</h1></BreadcrumbPage>
+              <BreadcrumbPage>
+                {" "}
+                <h1 className="text-2xl font-semibold">Dashboard</h1>
+              </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        <MainHeader/>
+        <MainHeader />
       </div>
     </header>
-  )
+  );
 }

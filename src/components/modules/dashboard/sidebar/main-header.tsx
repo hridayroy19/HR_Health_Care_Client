@@ -11,7 +11,7 @@ const MainHeader = () => {
         </div>
         <Avatar>
           <Image
-            src="/avatar.jpg"
+            src="https://i.ibb.co.com/B5bBHvQr/images-2.jpg"
             alt="avatar"
             width={40}
             height={40}
