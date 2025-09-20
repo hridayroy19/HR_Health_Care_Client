@@ -21,6 +21,8 @@ export const sidebarConfig: Record<"ADMIN" | "DOCTOR" | "PATIENT", SidebarData> 
       { title: "Patient", url: "/dashboard/admin/patient", icon: IconChartBar },
       { title: "Specialties", url: "/dashboard/admin/specialties", icon: IconFolder },
       { title: "Admin Management", url: "/dashboard/admin/own", icon: IconUsers },
+      { title: "Schedule", url: "/dashboard/admin/schedule", icon: IconTimeline },
+
     ],
     navSecondary: [
       { title: "Profile", url: "/dashboard/admin/profile", icon: IconUser },
@@ -35,7 +37,6 @@ export const sidebarConfig: Record<"ADMIN" | "DOCTOR" | "PATIENT", SidebarData> 
       { title: "Dashboard", url: "/dashboard/doctor", icon: IconDashboard },
       { title: "My Patients", url: "/dashboard/doctor/patients", icon: IconListDetails },
       { title: "Appointments", url: "/dashboard/doctor/appointments", icon: IconChartBar },
-      { title: "Schedule", url: "/dashboard/doctor/schedule", icon: IconTimeline },
     ],
     navSecondary: [
       { title: "Profile", url: "/dashboard/doctor/profile", icon: IconUser },

@@ -36,3 +36,18 @@ export const getAllPatient = async () => {
         return Error(error);
     }
 };
+
+//get all categories
+export const getByIdPatient = async (id:string) => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/patient/${id}`, {
+            next: {
+                tags: ["PATIENT"],
+            },
+        });
+        console.log(res, "data")
+        return res.json();
+    } catch (error: any) {
+        return Error(error);
+    }
+};

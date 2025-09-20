@@ -40,7 +40,7 @@ export function SiteHeader() {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+              <BreadcrumbPage> <h1 className="text-2xl font-semibold">Dashboard</h1></BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
