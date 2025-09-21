@@ -3,7 +3,7 @@ import { getAllDoctors } from "@/services/Doctor";
 
 const DoctorPage = async () => {
   const doctor = await getAllDoctors();
-    console.log(doctor)
+  console.log(doctor);
 
   return (
     <div>

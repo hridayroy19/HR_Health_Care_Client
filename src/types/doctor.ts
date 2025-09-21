@@ -1,6 +1,10 @@
 import { IDoctorSpecialty } from "./speciality";
+export interface IData {
+    data:IDoctor[]
+}
 
 export interface IDoctor {
+    data:IData
     id: string;
     name: string;
     email: string;
