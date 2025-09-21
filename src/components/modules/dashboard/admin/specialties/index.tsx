@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { HRDataTable } from "@/components/ui/core/HRTable/HRDataTable";
+import LustreText from "@/components/ui/lustretext";
 import {
   ColumnDef,
   createAnimatedCell,
@@ -14,10 +15,7 @@ const SpecialtiesManagement = ({
 }: {
   specialties: ISpecialty[];
 }) => {
-
- console.log(specialties,"dddddd")
-
-   const columns: ColumnDef<ISpecialty>[] = [
+  const columns: ColumnDef<ISpecialty>[] = [
     {
       accessorKey: "icon",
       header: "Icon",
@@ -45,10 +43,10 @@ const SpecialtiesManagement = ({
     },
   ];
   return (
-    <div>
+    <div className="p-6">
       <div className="flex justify-between mb-8">
-        <h4 className="font-normal text-3xl">Doctor Management</h4>
-        <Button> add </Button>
+        <LustreText className="text-2xl" text="Specilites Management" />
+        <Button className="bg-purple-600"> + Add Speclites </Button>
       </div>
       <HRDataTable
         data={specialties}

@@ -1,9 +1,10 @@
+import AdminManagement from '@/components/modules/dashboard/admin/own';
 import React from 'react';
 
 const Adminpage = () => {
     return (
         <div>
-            admin management
+        <AdminManagement/>
         </div>
     );
 };
